@@ -104,7 +104,16 @@ Actualizar información en `src/components/Footer.jsx` y `src/components/CTA.jsx
 - Dirección
 - Redes sociales
 
-## 🚀 Deployment con Firebase
+## 🚀 Deployment Automático con GitHub Actions + Firebase
+
+✅ **Configuración completada**: Cada push a la rama `main` despliega automáticamente el sitio a Firebase Hosting.
+
+### URLs del Proyecto
+- **Sitio web**: https://nutsport-landing.web.app
+- **Repositorio**: https://github.com/Grobier/nutsport
+- **Firebase Console**: https://console.firebase.google.com/project/nutsport-landing
+
+## 🚀 Deployment Manual (si es necesario)
 
 ### Configuración Inicial
 
