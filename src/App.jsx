@@ -18,12 +18,12 @@ function App() {
       <Header />
       <main>
         <Hero />
+        <PartnersCarousel />
         <Services />
         <Pricing />
         <InstitutionalAgreements />
         <Testimonials />
         <Team />
-        <PartnersCarousel />
         <FAQ />
         <CTA />
       </main>

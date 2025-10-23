@@ -70,11 +70,7 @@ const Header = () => {
                 key={item.name}
                 href={item.href}
                 whileHover={{ y: -2 }}
-                className={`font-medium transition-colors duration-300 ${
-                  isScrolled 
-                    ? 'text-white hover:text-white/80' 
-                    : 'text-neutral-700 hover:text-[#073995]'
-                }`}
+                className="font-medium text-white hover:text-white/80 transition-colors duration-300"
               >
                 {item.name}
               </motion.a>
@@ -100,11 +96,11 @@ const Header = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden p-2 rounded-lg hover:bg-neutral-100 transition-colors"
+            className="lg:hidden p-2 rounded-lg hover:bg-white/10 transition-colors"
             aria-label="Toggle menu"
           >
             <svg
-              className="w-6 h-6 text-neutral-700"
+              className="w-6 h-6 text-white"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
