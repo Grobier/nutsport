@@ -4,7 +4,6 @@ import Hero from './components/Hero'
 import Services from './components/Services'
 import Pricing from './components/Pricing'
 import InstitutionalAgreements from './components/InstitutionalAgreements'
-import GoogleReviews from './components/GoogleReviews'
 import Testimonials from './components/Testimonials'
 import Team from './components/Team'
 import PartnersCarousel from './components/PartnersCarousel'
@@ -22,7 +21,6 @@ function App() {
         <Services />
         <Pricing />
         <InstitutionalAgreements />
-        <GoogleReviews />
         <Testimonials />
         <Team />
         <PartnersCarousel />

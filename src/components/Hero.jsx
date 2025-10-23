@@ -41,13 +41,13 @@ const Hero = () => {
               className="space-y-6"
             >
               <div className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight min-h-[300px] flex flex-col justify-center">
-                <div className="text-[#073995] mb-4">Tu progreso</div>
-                <div className="text-[#073995] mb-4">comienza con</div>
-                <div className="text-[#11AEF4]">
+                <div className="text-[#073995] mb-2 leading-none">Tu progreso</div>
+                <div className="text-[#073995] mb-2 leading-none">comienza con</div>
+                <div className="text-[#11AEF4] leading-none">
                   <FlipWords 
                     words={changingTexts} 
                     duration={2500}
-                    className="text-[#11AEF4] font-bold"
+                    className="text-[#11AEF4] font-extrabold leading-none tracking-tight"
                   />
                 </div>
               </div>
