@@ -18,24 +18,26 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+
   const menuItems = [
     { name: 'Servicios', href: '#servicios' },
     { name: 'Equipo', href: '#equipo' },
     { name: 'Testimonios', href: '#testimonios' },
+    { name: 'FAQ', href: '#faq' },
     { name: 'Contacto', href: '#contacto' },
   ]
 
   return (
     <motion.header
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled 
-          ? 'bg-[#073995]/95 backdrop-blur-md shadow-lg' 
-          : 'bg-transparent'
-      }`}
-    >
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.6 }}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          isScrolled 
+            ? 'bg-[#073995]/95 backdrop-blur-md shadow-lg' 
+            : 'bg-transparent'
+        }`}
+      >
       <div className="container-custom">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
@@ -45,9 +47,20 @@ const Header = () => {
           >
             <img 
               src="/images/logos/Nutsport-logo-h.png" 
-              alt="NutSport Logo" 
+              alt="NutSport Logo - Nutrición Deportiva y Psicología del Deporte" 
               className="h-8 lg:h-10 w-auto"
+              loading="eager"
+              decoding="async"
+              onError={(e) => {
+                // Fallback si la imagen no existe
+                e.target.style.display = 'none'
+                e.target.nextSibling.style.display = 'flex'
+              }}
             />
+            {/* Fallback text logo */}
+            <div className="hidden items-center">
+              <span className="text-xl font-bold text-white">NutSport</span>
+            </div>
           </motion.div>
 
           {/* Desktop Navigation */}
@@ -142,6 +155,7 @@ const Header = () => {
                   {item.name}
                 </a>
               ))}
+              
               <a
                 href={whatsappHref}
                 target="_blank"

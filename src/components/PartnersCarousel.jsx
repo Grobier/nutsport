@@ -2,7 +2,7 @@ import React from 'react'
 import { motion } from 'framer-motion'
 
 const PartnersCarousel = () => {
-  // Lista de instituciones partners (usando solo las imágenes que existen)
+  // Lista de instituciones partners usando solo las imágenes que existen
   const partners = [
     {
       id: 1,
@@ -48,9 +48,123 @@ const PartnersCarousel = () => {
     },
     {
       id: 8,
-      name: "Neuro",
+      name: "NeuroSport Chile",
       logo: "/images/logos/partners/neuro.png",
       category: "Institución"
+    },
+    {
+      id: 9,
+      name: "Alma",
+      logo: "/images/logos/partners/alma.png",
+      category: "Institución"
+    },
+    {
+      id: 10,
+      name: "Ates",
+      logo: "/images/logos/partners/ates.png",
+      category: "Club Deportivo"
+    },
+    {
+      id: 11,
+      name: "Caribes",
+      logo: "/images/logos/partners/caribes.png",
+      category: "Club Deportivo"
+    },
+    {
+      id: 12,
+      name: "Dmoov",
+      logo: "/images/logos/partners/dmoov.png",
+      category: "Centro Deportivo"
+    },
+    {
+      id: 13,
+      name: "Espacio Social",
+      logo: "/images/logos/partners/espacio-social-1.png",
+      category: "Institución"
+    },
+    {
+      id: 14,
+      name: "FAM",
+      logo: "/images/logos/partners/fam.png",
+      category: "Club Deportivo"
+    },
+    {
+      id: 15,
+      name: "Fuerza Mov",
+      logo: "/images/logos/partners/fuerza-mov.png",
+      category: "Centro Deportivo"
+    },
+    {
+      id: 16,
+      name: "Global",
+      logo: "/images/logos/partners/global.png",
+      category: "Institución"
+    },
+    {
+      id: 17,
+      name: "Greco",
+      logo: "/images/logos/partners/greco.png",
+      category: "Club Deportivo"
+    },
+    {
+      id: 18,
+      name: "JRP Kinesiología",
+      logo: "/images/logos/partners/jrp-kine.png",
+      category: "Centro de Salud"
+    },
+    {
+      id: 19,
+      name: "Maga",
+      logo: "/images/logos/partners/maga.png",
+      category: "Club Deportivo"
+    },
+    {
+      id: 20,
+      name: "Men Pilates",
+      logo: "/images/logos/partners/men-pilates.png",
+      category: "Centro de Entrenamiento"
+    },
+    {
+      id: 21,
+      name: "Newen",
+      logo: "/images/logos/partners/newen.png",
+      category: "Club Deportivo"
+    },
+    {
+      id: 22,
+      name: "Ñuñoa",
+      logo: "/images/logos/partners/nunoa.png",
+      category: "Club Deportivo"
+    },
+    {
+      id: 23,
+      name: "Orinoco",
+      logo: "/images/logos/partners/orinoco.png",
+      category: "Club Deportivo"
+    },
+    {
+      id: 24,
+      name: "Palestino",
+      logo: "/images/logos/partners/palestino.png",
+      category: "Club Deportivo"
+    },
+    {
+      id: 25,
+      name: "Rama",
+      logo: "/images/logos/partners/rama.png",
+      category: "Club Deportivo"
+    },
+    {
+      id: 26,
+      name: "Unity",
+      logo: "/images/logos/partners/unity.png",
+      category: "Club Deportivo"
+    },
+    {
+      id: 27,
+      name: "Vikimgos",
+      logo: "/images/logos/partners/vikimgos.png",
+      category: "Club Deportivo"
     }
   ]
 

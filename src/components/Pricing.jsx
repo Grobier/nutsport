@@ -1,5 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
+import TextHoverEffect from './TextHoverEffect'
 
 const Pricing = () => {
   // WhatsApp configuration
@@ -8,18 +9,15 @@ const Pricing = () => {
   const plans = [
     {
       id: 1,
-      title: "Consulta Nutricional Particular",
+      title: "Consulta Nutricional",
       price: "$40.000",
-      duration: "30-45 MIN | 1 SESIÓN",
-      description: "Staff de 3 nutricionistas a elección.",
+      duration: "30-45 MIN",
+      description: "Evaluación nutricional completa",
       features: [
-        "Pauta de alimentación personalizada",
-        "Minutas adaptadas a tu entrenamiento",
-        "Mediciones antropométricas + informe",
-        "Asesoría en suplementación deportiva",
-        "Seguimiento/ resolución de dudas vía WhatsApp por 1 mes con tu nutricionista",
-        "Orden de exámenes (si se requiere)",
-        "Boleta para reembolso en Isapre o seguros"
+        "Pauta alimentaria personalizada",
+        "Mediciones antropométricas",
+        "Asesoría en suplementación",
+        "Seguimiento WhatsApp 1 mes"
       ],
       headerColor: "bg-[#073995]",
       buttonText: "AGENDAR AHORA",
@@ -27,13 +25,15 @@ const Pricing = () => {
     },
     {
       id: 2,
-      title: "Pack 3 Sesiones Nutricionales",
+      title: "Pack 3 Sesiones",
       price: "$80.000",
-      duration: "VIGENCIA: 6 MESES | 3 SESIONES",
-      description: "Plan de 3 consultas nutricionales (3x2), con un plazo de hasta 6 meses para usarlas desde la fecha de pago.",
+      duration: "6 MESES",
+      description: "Plan de 3 consultas nutricionales",
       specialNote: "¡Tú eliges cuando agendarlas!",
       features: [
-        "Incluye todo lo indicado en la consulta particular para cada sesión."
+        "3 consultas nutricionales",
+        "Vigencia 6 meses",
+        "Todo incluido"
       ],
       headerColor: "bg-gradient-to-b from-[#11AEF4] to-[#073995]",
       buttonText: "AGENDAR AHORA",
@@ -42,17 +42,14 @@ const Pricing = () => {
     },
     {
       id: 3,
-      title: "Consulta Psicológica Particular",
+      title: "Consulta Psicológica",
       price: "$40.000",
-      duration: "50 MIN | PRESENCIAL EN NUTSPORT",
-      description: "Fortalece tu mentalidad deportiva con sesiones individuales enfocadas en manejar el estrés, aumentar la concentración y potenciar tu motivación.",
+      duration: "50 MIN",
+      description: "Preparación mental deportiva",
       features: [
-        "Manejo del estrés y ansiedad pre-competitiva",
-        "Aumento del enfoque y la concentración",
-        "Rutinas mentales positivas y resiliencia",
-        "Mejora de autoestima deportiva y motivación",
-        "Preparación mental post-lesión",
-        "Gestión del fracaso y la presión en el deporte"
+        "Manejo del estrés competitivo",
+        "Mejora de concentración",
+        "Motivación y resiliencia"
       ],
       headerColor: "bg-[#073995]",
       buttonText: "AGENDAR AHORA",
@@ -92,12 +89,17 @@ const Pricing = () => {
           variants={containerVariants}
           className="text-center mb-16"
         >
-          <motion.h2
+          <motion.div
             variants={itemVariants}
-            className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-6"
+            className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6"
           >
-            Nuestros Planes
-          </motion.h2>
+            <TextHoverEffect 
+              text="Nuestros Planes"
+              hoverColor="#11AEF4"
+              defaultColor="#073995"
+              className="text-3xl md:text-4xl lg:text-5xl font-bold"
+            />
+          </motion.div>
           <motion.p
             variants={itemVariants}
             className="text-lg text-neutral-600 max-w-3xl mx-auto"
@@ -111,92 +113,154 @@ const Pricing = () => {
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={containerVariants}
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
-              {plans.map((plan, index) => (
-                <motion.div
-                  key={plan.id}
-                  variants={itemVariants}
-                  whileHover={{ y: -5 }}
-                  className="relative group"
+          {plans.map((plan, index) => (
+            <motion.div
+              key={plan.id}
+              variants={itemVariants}
+              className="relative group"
+            >
+              {/* Popular Badge - Mejorado */}
+              {plan.isPopular && (
+                <motion.div 
+                  initial={{ scale: 0, rotate: -10 }}
+                  animate={{ scale: 1, rotate: 0 }}
+                  transition={{ delay: 0.5 + index * 0.1, type: "spring", stiffness: 200 }}
+                  className="absolute -top-4 -right-4 bg-gradient-to-r from-[#073995] to-[#11AEF4] text-white text-xs font-bold px-4 py-2 rounded-full z-20 shadow-lg"
                 >
-                  {/* Card Background */}
-                  <div className="bg-gradient-to-br from-slate-50 to-white rounded-2xl p-6 border border-slate-200/60 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full">
-                    
-                    {/* Popular Badge */}
-                    {plan.isPopular && (
-                      <div className="absolute -top-2 -right-2 bg-gradient-to-r from-amber-400 to-orange-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg z-20 transform rotate-12">
-                        <div className="flex items-center space-x-1">
-                          <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                          </svg>
-                          <span>MÁS ESCOGIDO</span>
-                        </div>
-                      </div>
-                    )}
+                  <motion.div
+                    animate={{ rotate: [0, 5, -5, 0] }}
+                    transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
+                  >
+                    ⭐ MÁS ESCOGIDO
+                  </motion.div>
+                </motion.div>
+              )}
 
-                    {/* Header */}
-                    <div className="text-center mb-6">
-                      <div className="w-16 h-16 bg-gradient-to-br from-[#073995] to-[#11AEF4] rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
-                        <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                        </svg>
-                      </div>
-                      <h3 className="text-xl font-bold text-slate-800 mb-2">
-                        {plan.title}
-                      </h3>
-                      <p className="text-sm text-slate-600 mb-4">
-                        {plan.description}
-                      </p>
-                      <div className="text-xs text-slate-500 font-medium uppercase tracking-wide">
-                        {plan.duration}
-                      </div>
-                    </div>
+              {/* Card con Efectos Avanzados */}
+              <motion.div 
+                whileHover={{ 
+                  y: -10,
+                  scale: 1.02,
+                  rotateY: 5
+                }}
+                whileTap={{ scale: 0.98 }}
+                className="relative bg-white rounded-2xl border border-neutral-100 p-8 flex flex-col h-full overflow-hidden cursor-pointer"
+                style={{
+                  background: 'linear-gradient(145deg, #ffffff 0%, #f8fafc 100%)',
+                  boxShadow: '0 4px 20px rgba(0,0,0,0.1)'
+                }}
+              >
+                {/* Efecto de brillo en hover */}
+                <div className="absolute inset-0 bg-gradient-to-br from-[#11AEF4]/5 to-[#073995]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"></div>
+                
+                {/* Header con Icono Animado */}
+                <div className="text-center mb-8 relative z-10">
+                  <motion.div
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-[#073995] to-[#11AEF4] rounded-full flex items-center justify-center"
+                  >
+                    <span className="text-2xl">
+                      {index === 0 ? '🥗' : index === 1 ? '📦' : '🧠'}
+                    </span>
+                  </motion.div>
+                  
+                  <h3 className="text-xl font-bold text-[#073995] mb-3 group-hover:text-[#11AEF4] transition-colors duration-300">
+                    {plan.title}
+                  </h3>
+                  
+                  <p className="text-sm text-neutral-600 mb-3">
+                    {plan.description}
+                  </p>
+                  
+                  <div className="inline-block bg-gradient-to-r from-[#073995]/10 to-[#11AEF4]/10 px-4 py-1 rounded-full">
+                    <span className="text-xs font-semibold text-[#073995]">
+                      {plan.duration}
+                    </span>
+                  </div>
+                </div>
 
-                    {/* Price */}
-                    <div className="text-center mb-6">
-                      <div className="text-3xl font-bold text-[#073995] mb-1">
-                        {plan.price}
-                      </div>
-                      {plan.specialNote && (
-                        <p className="text-[#11AEF4] font-semibold text-sm">
-                          {plan.specialNote}
-                        </p>
-                      )}
-                    </div>
+                {/* Price con Efecto Especial */}
+                <div className="text-center mb-8 relative z-10">
+                  <motion.div 
+                    className="text-4xl font-bold bg-gradient-to-r from-[#073995] to-[#11AEF4] bg-clip-text text-transparent mb-2"
+                    whileHover={{ scale: 1.1 }}
+                  >
+                    {plan.price}
+                  </motion.div>
+                  
+                  {plan.specialNote && (
+                    <motion.p 
+                      className="text-[#11AEF4] font-semibold text-sm"
+                      animate={{ opacity: [0.7, 1, 0.7] }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                    >
+                      {plan.specialNote}
+                    </motion.p>
+                  )}
+                </div>
 
-                    {/* Features */}
-                    <div className="mb-6 flex-grow">
-                      <ul className="space-y-3">
-                        {plan.features.map((feature, featureIndex) => (
-                          <li key={featureIndex} className="flex items-start space-x-3">
-                            <div className="w-5 h-5 bg-green-100 rounded-full flex-shrink-0 mt-0.5 flex items-center justify-center">
-                              <svg className="w-3 h-3 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                              </svg>
-                            </div>
-                            <span className="text-slate-700 text-sm leading-relaxed">
-                              {feature}
-                            </span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+                {/* Features con Animaciones */}
+                <div className="mb-8 flex-grow relative z-10">
+                  <ul className="space-y-3">
+                    {plan.features.map((feature, featureIndex) => (
+                      <motion.li 
+                        key={featureIndex} 
+                        className="flex items-start space-x-3"
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.8 + index * 0.2 + featureIndex * 0.1 }}
+                        whileHover={{ x: 5 }}
+                      >
+                        <motion.div 
+                          className="w-2 h-2 bg-gradient-to-r from-[#073995] to-[#11AEF4] rounded-full flex-shrink-0 mt-2"
+                          whileHover={{ scale: 1.5 }}
+                        ></motion.div>
+                        <span className="text-neutral-700 text-sm leading-relaxed group-hover:text-[#073995] transition-colors duration-300">
+                          {feature}
+                        </span>
+                      </motion.li>
+                    ))}
+                  </ul>
+                </div>
 
-                    {/* Button */}
-                    <motion.a
-                      href={`https://wa.me/${phone}?text=${plan.whatsappMessage}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      className="w-full bg-gradient-to-r from-[#073995] to-[#11AEF4] hover:from-[#073995]/90 hover:to-[#11AEF4]/90 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 text-center block text-sm shadow-md hover:shadow-lg mt-auto"
+                {/* Button con Efectos Avanzados */}
+                <motion.a
+                  href={`https://wa.me/${phone}?text=${plan.whatsappMessage}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="relative overflow-hidden group/btn"
+                >
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="w-full bg-gradient-to-r from-[#073995] to-[#11AEF4] text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 text-center block text-sm mt-auto relative z-10 shadow-lg hover:shadow-xl"
+                  >
+                    <motion.span
+                      className="relative z-10"
+                      whileHover={{ x: 5 }}
                     >
                       {plan.buttonText}
-                    </motion.a>
-                  </div>
-                </motion.div>
-              ))}
+                    </motion.span>
+                    
+                    {/* Efecto de brillo en el botón */}
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-1000"
+                      initial={{ x: '-100%' }}
+                      whileHover={{ x: '100%' }}
+                      transition={{ duration: 0.6 }}
+                    ></motion.div>
+                  </motion.div>
+                </motion.a>
+
+                {/* Partículas decorativas */}
+                <div className="absolute top-4 right-4 w-2 h-2 bg-[#11AEF4]/30 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="absolute bottom-4 left-4 w-1 h-1 bg-[#073995]/30 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                <div className="absolute top-1/2 right-2 w-1.5 h-1.5 bg-[#11AEF4]/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-600"></div>
+              </motion.div>
+            </motion.div>
+          ))}
         </motion.div>
       </div>
     </section>

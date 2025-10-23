@@ -8,6 +8,7 @@ import GoogleReviews from './components/GoogleReviews'
 import Testimonials from './components/Testimonials'
 import Team from './components/Team'
 import PartnersCarousel from './components/PartnersCarousel'
+import FAQ from './components/FAQ'
 import CTA from './components/CTA'
 import Footer from './components/Footer'
 import WhatsAppButton from './components/WhatsAppButton'
@@ -25,6 +26,7 @@ function App() {
         <Testimonials />
         <Team />
         <PartnersCarousel />
+        <FAQ />
         <CTA />
       </main>
       <Footer />
