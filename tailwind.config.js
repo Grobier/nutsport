@@ -50,6 +50,7 @@ export default {
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
+        grift: ['"Grift Geometric"', 'Inter', 'system-ui', 'sans-serif'],
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',
@@ -79,4 +80,3 @@ export default {
   },
   plugins: [],
 }
-

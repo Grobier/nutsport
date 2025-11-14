@@ -1,7 +1,5 @@
-import React from 'react'
+﻿import React from 'react'
 import { motion } from 'framer-motion'
-import TextHoverEffect from './TextHoverEffect'
-import { DirectionAwareHover } from './ui/direction-aware-hover'
 
 const Services = () => {
   // WhatsApp configuration
@@ -17,7 +15,8 @@ const Services = () => {
         "Seguimiento de métricas",
         "Optimización del rendimiento"
       ],
-      whatsappMessage: "Hola%20NutSport%2C%20me%20interesa%20agendar%20una%20evaluación%20de%20Nutrición%20Deportiva%20Personalizada%2E%20¿Podrían%20ayudarme%20con%20más%20información%3F",
+      whatsappMessage:
+        "Hola%20NutSport%2C%20me%20interesa%20agendar%20una%20evaluaci%C3%B3n%20de%20Nutrici%C3%B3n%20Deportiva%20Personalizada.%20%C2%BFPodr%C3%ADan%20ayudarme%20con%20m%C3%A1s%20informaci%C3%B3n%3F",
       imageUrl: "/images/services/nutricion-deportiva.jpg"
     },
     {
@@ -29,7 +28,8 @@ const Services = () => {
         "Mejora de adherencia",
         "Preparación mental"
       ],
-      whatsappMessage: "Hola%20NutSport%2C%20me%20interesa%20agendar%20una%20evaluación%20de%20Psicología%20del%20Deporte%2E%20¿Podrían%20ayudarme%20con%20más%20información%3F",
+      whatsappMessage:
+        "Hola%20NutSport%2C%20me%20interesa%20agendar%20una%20evaluaci%C3%B3n%20de%20Psicolog%C3%ADa%20del%20Deporte.%20%C2%BFPodr%C3%ADan%20ayudarme%20con%20m%C3%A1s%20informaci%C3%B3n%3F",
       imageUrl: "/images/services/psicologia-deporte.jpg"
     },
     {
@@ -41,7 +41,8 @@ const Services = () => {
         "Beneficios corporativos",
         "Seguimiento institucional"
       ],
-      whatsappMessage: "Hola%20NutSport%2C%20me%20interesa%20información%20sobre%20Convenios%20para%20Instituciones%2E%20¿Podrían%20ayudarme%20con%20más%20detalles%3F",
+      whatsappMessage:
+        "Hola%20NutSport%2C%20me%20interesa%20informaci%C3%B3n%20sobre%20Convenios%20para%20Instituciones.%20%C2%BFPodr%C3%ADan%20ayudarme%20con%20m%C3%A1s%20detalles%3F",
       imageUrl: "/images/services/convenios-instituciones.jpg"
     }
   ]
@@ -50,102 +51,97 @@ const Services = () => {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.2
-      }
+      transition: { staggerChildren: 0.2 }
     }
   }
 
   const itemVariants = {
     hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut"
-      }
-    }
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } }
   }
 
   return (
-    <section id="servicios" className="section-padding bg-neutral-50">
-      <div className="container-custom">
+    <section
+      id="servicios"
+      className="relative py-20 sm:py-24 lg:py-28 overflow-hidden bg-white"
+    >
+
+      <div className="relative mx-auto w-full max-w-7xl px-6 lg:px-8 z-20">
         <motion.div
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: '-100px' }}
           variants={containerVariants}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
-          <motion.div
+          <motion.h2
             variants={itemVariants}
-            className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6"
+            className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-[#073995] mb-4 font-grift uppercase"
           >
-            <TextHoverEffect 
-              text="Nuestros Servicios"
-              hoverColor="#11AEF4"
-              defaultColor="#073995"
-              className="text-3xl md:text-4xl lg:text-5xl font-bold"
-            />
-          </motion.div>
+            Nuestros Servicios
+          </motion.h2>
           <motion.p
             variants={itemVariants}
-            className="text-lg text-neutral-600 max-w-3xl mx-auto"
+            className="mx-auto max-w-2xl text-lg text-neutral-600 font-light"
           >
-            Soluciones integrales diseñadas para deportistas, equipos e instituciones 
-            que buscan optimizar su rendimiento a través de la ciencia.
+            Soluciones integrales para optimizar tu rendimiento
           </motion.p>
         </motion.div>
 
         <motion.div
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: '-100px' }}
           variants={containerVariants}
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto"
         >
           {services.map((service, index) => (
-            <motion.div
-              key={index}
-              variants={itemVariants}
-              className="h-[500px]"
-            >
-              <DirectionAwareHover 
-                imageUrl={service.imageUrl}
-                className="h-full"
-              >
-                <div className="space-y-4">
-                  <h3 className="font-bold text-2xl text-white drop-shadow-lg">
-                    {service.title}
-                  </h3>
-                  
-                  <p className="text-white text-sm leading-relaxed drop-shadow-md">
-                    {service.description}
-                  </p>
-                  
-                  <ul className="space-y-2">
+            <motion.div key={index} variants={itemVariants} className="group">
+              <div className="h-full flex flex-col bg-white/95 backdrop-blur-sm rounded-3xl p-8 hover:bg-white transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
+                {/* Imagen */}
+                <div className="aspect-video w-full overflow-hidden rounded-2xl mb-6 bg-gray-100">
+                  <img
+                    src={service.imageUrl}
+                    alt={service.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+
+                {/* Contenido */}
+                <div className="flex-1">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-4">{service.title}</h3>
+                  <p className="text-gray-700 leading-relaxed mb-6">{service.description}</p>
+
+                  {/* Features */}
+                  <ul className="space-y-3 mb-6">
                     {service.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-center space-x-2">
-                        <div className="w-2 h-2 bg-[#11AEF4] rounded-full flex-shrink-0 shadow-sm"></div>
-                        <span className="text-white text-sm drop-shadow-sm">{feature}</span>
+                      <li key={featureIndex} className="flex items-start">
+                        <svg className="w-5 h-5 text-[#11AEF4] mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                        <span className="text-gray-600 text-sm">{feature}</span>
                       </li>
                     ))}
                   </ul>
-                  
-                  <motion.a
-                    href={`https://wa.me/${phone}?text=${service.whatsappMessage}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center bg-white text-[#073995] font-semibold px-6 py-3 rounded-xl hover:bg-white/90 transition-colors mt-6 shadow-lg"
-                  >
-                    Agenda tu evaluación
-                    <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </motion.a>
                 </div>
-              </DirectionAwareHover>
+
+                {/* Botón */}
+                <motion.a
+                  href={`https://wa.me/${phone}?text=${service.whatsappMessage}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="inline-flex items-center justify-center w-full bg-gradient-to-r from-[#073995] to-[#11AEF4] text-white font-semibold py-4 px-6 rounded-xl hover:shadow-lg transition-all duration-300"
+                >
+                  Agenda tu evaluación
+                  <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </motion.a>
+              </div>
             </motion.div>
           ))}
         </motion.div>
@@ -155,3 +151,4 @@ const Services = () => {
 }
 
 export default Services
+
