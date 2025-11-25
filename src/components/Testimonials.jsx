@@ -1,13 +1,30 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import TextHoverEffect from './TextHoverEffect'
 
 const Testimonials = () => {
-  const [currentReview, setCurrentReview] = useState(0)
+  const [currentVideoIndex, setCurrentVideoIndex] = useState(0)
+  const carouselRef = useRef(null)
 
   const googleReviews = [
-    { name: 'Maria Gonzalez', quote: 'Excelente servicio nutricional.', source: 'google' },
-    { name: 'Carlos Mendoza', quote: 'Muy buen apoyo psicologico deportivo.', source: 'google' },
-    { name: 'Ana Silva', quote: 'Planes personalizados y seguimiento.', source: 'google' },
+    {
+      name: 'María González',
+      quote: 'Excelente servicio nutricional, muy personalizado y cercano.',
+      rating: 5,
+      source: 'google',
+    },
+    {
+      name: 'Carlos Mendoza',
+      quote: 'Gran apoyo en la parte mental y nutricional. El equipo es muy profesional.',
+      rating: 5,
+      source: 'google',
+    },
+    {
+      name: 'Ana Silva',
+      quote: 'Planes claros, seguimiento constante y resultados rápidos.',
+      rating: 5,
+      source: 'google',
+    },
   ]
 
   const videoTestimonials = [
@@ -26,14 +43,12 @@ const Testimonials = () => {
       title: 'Caso exito Camilo Vargas',
       src: 'https://www.youtube.com/embed/4lR5P3e_xXI?rel=0&modestbranding=1&playsinline=1',
     },
+    {
+      id: 'testimonio-shorts',
+      title: 'Testimonio NutSport',
+      src: 'https://www.youtube.com/embed/VQU_gMW2e4s?rel=0&modestbranding=1&playsinline=1',
+    },
   ]
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentReview((prev) => (prev + 1) % googleReviews.length)
-    }, 5000)
-    return () => clearInterval(timer)
-  }, [googleReviews.length])
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -43,6 +58,63 @@ const Testimonials = () => {
   const itemVariants = {
     hidden: { opacity: 0, y: 30 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+  }
+
+  const scrollToVideo = (index) => {
+    if (carouselRef.current) {
+      const videoElement = carouselRef.current.children[index]
+      if (videoElement) {
+        videoElement.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
+        setCurrentVideoIndex(index)
+      }
+    }
+  }
+
+  const nextVideo = () => {
+    const nextIndex = (currentVideoIndex + 1) % videoTestimonials.length
+    scrollToVideo(nextIndex)
+  }
+
+  const prevVideo = () => {
+    const prevIndex = (currentVideoIndex - 1 + videoTestimonials.length) % videoTestimonials.length
+    scrollToVideo(prevIndex)
+  }
+
+  const handleScroll = () => {
+    if (carouselRef.current) {
+      const container = carouselRef.current
+      const scrollLeft = container.scrollLeft
+      const itemWidth = container.children[0]?.offsetWidth || 0
+      const gap = 24 // gap-6 = 1.5rem = 24px
+      const newIndex = Math.round(scrollLeft / (itemWidth + gap))
+      if (newIndex !== currentVideoIndex && newIndex >= 0 && newIndex < videoTestimonials.length) {
+        setCurrentVideoIndex(newIndex)
+      }
+    }
+  }
+
+  const CountUp = ({ value, duration = 1.4, suffix = '', decimals = 0 }) => {
+    const [display, setDisplay] = useState(0)
+
+    useEffect(() => {
+      let frame
+      const start = performance.now()
+      const endValue = Number(value) || 0
+      const step = (now) => {
+        const progress = Math.min((now - start) / (duration * 1000), 1)
+        const current = endValue * progress
+        setDisplay(current)
+        if (progress < 1) frame = requestAnimationFrame(step)
+      }
+      frame = requestAnimationFrame(step)
+      return () => cancelAnimationFrame(frame)
+    }, [value, duration])
+
+    const formatted = Number.isInteger(value) && decimals === 0
+      ? Math.round(display).toLocaleString('es-CL')
+      : display.toFixed(decimals)
+
+    return <span>{formatted}{suffix}</span>
   }
 
   return (
@@ -56,7 +128,14 @@ const Testimonials = () => {
           className="flex flex-col md:flex-row items-center justify-between mb-10 gap-4"
         >
           <motion.div variants={itemVariants} className="text-center md:text-left">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#073995] mb-2">Lo que dicen nuestros clientes</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#073995] mb-2 uppercase tracking-wide font-grift">
+              <TextHoverEffect
+                text="Lo que dicen nuestros clientes"
+                defaultColor="#073995"
+                hoverColor="#11AEF4"
+                className="text-3xl md:text-4xl font-bold font-grift"
+              />
+            </h2>
             <p className="text-neutral-600 text-sm">Resenas verificadas y testimonios reales</p>
           </motion.div>
 
@@ -83,43 +162,107 @@ const Testimonials = () => {
           whileInView="visible"
           viewport={{ once: true, margin: '-100px' }}
           variants={containerVariants}
-          className="mb-12"
+          className="mb-12 relative"
         >
-          <div className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-6 -mx-4 px-4 md:mx-0 md:px-0 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-8 md:overflow-visible md:snap-none">
-            {videoTestimonials.map((video) => (
-              <motion.div
-                key={video.id}
-                variants={itemVariants}
-                className="flex-shrink-0 w-[260px] snap-center bg-neutral-900 rounded-xl overflow-hidden relative md:flex-shrink md:w-full md:snap-start"
-              >
-                <div className="aspect-[9/16] w-full bg-black">
-                  <iframe
-                    className="w-full h-full"
-                    src={video.src}
-                    title={video.title}
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="strict-origin-when-cross-origin"
-                  />
-                </div>
-              </motion.div>
+          <div className="relative">
+            <div
+              ref={carouselRef}
+              onScroll={handleScroll}
+              className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-6 -mx-4 px-4 md:mx-0 md:px-0 scrollbar-hide scroll-smooth"
+            >
+              {videoTestimonials.map((video) => (
+                <motion.div
+                  key={video.id}
+                  variants={itemVariants}
+                  whileHover={{ y: -6, scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ type: 'spring', stiffness: 230, damping: 18 }}
+                  className="flex-shrink-0 w-[260px] md:w-[300px] lg:w-[320px] snap-center bg-neutral-900 rounded-xl overflow-hidden relative shadow-lg hover:shadow-2xl"
+                >
+                  <div className="aspect-[9/16] w-full bg-black">
+                    <iframe
+                      className="w-full h-full"
+                      src={video.src}
+                      title={video.title}
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
+                      loading="lazy"
+                      referrerPolicy="strict-origin-when-cross-origin"
+                    />
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+            
+            {/* Botones de navegación para desktop */}
+            <button
+              onClick={prevVideo}
+              className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 w-12 h-12 bg-white rounded-full shadow-lg items-center justify-center hover:bg-[#073995] hover:text-white transition-all duration-300 group"
+              aria-label="Video anterior"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+            <button
+              onClick={nextVideo}
+              className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 w-12 h-12 bg-white rounded-full shadow-lg items-center justify-center hover:bg-[#073995] hover:text-white transition-all duration-300 group"
+              aria-label="Siguiente video"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+          
+          {/* Indicadores de posición */}
+          <div className="hidden md:flex justify-center gap-2 mt-6">
+            {videoTestimonials.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => scrollToVideo(index)}
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                  index === currentVideoIndex
+                    ? 'bg-[#073995] w-8'
+                    : 'bg-neutral-300 hover:bg-neutral-400'
+                }`}
+                aria-label={`Ir al video ${index + 1}`}
+              />
             ))}
           </div>
 
           <motion.div variants={itemVariants} className="bg-neutral-50 rounded-xl p-8 border border-neutral-100 relative overflow-hidden mt-8 md:mt-10">
-            <div className="flex items-center justify-between mb-6">
-              <div className="text-sm font-semibold text-neutral-600">Resenas Google</div>
-              <div className="text-xs text-neutral-500">{currentReview + 1} / {googleReviews.length}</div>
+            <div className="flex items-center justify-between flex-wrap gap-3 mb-6">
+              <div className="flex items-center gap-3">
+                <span className="text-sm font-semibold text-neutral-700">Reseñas Google</span>
+                <div className="flex items-center text-yellow-400">
+                  {[...Array(5)].map((_, i) => (
+                    <svg key={i} className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                  ))}
+                </div>
+              </div>
+              <div className="text-xs text-neutral-500">{googleReviews.length} reseñas destacadas</div>
             </div>
-            <div className="relative min-h-[140px]">
-              <AnimatePresence mode="wait">
-                <motion.div key={currentReview} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} transition={{ duration: 0.25 }}>
-                  <blockquote className="text-neutral-700 mb-4 text-base">"{googleReviews[currentReview].quote}"</blockquote>
-                  <p className="font-semibold text-[#073995]">{googleReviews[currentReview].name}</p>
-                </motion.div>
-              </AnimatePresence>
+
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              {googleReviews.map((review, idx) => (
+                <div key={idx} className="bg-white rounded-xl border border-neutral-200 p-5 shadow-sm">
+                  <div className="flex items-center justify-between mb-3">
+                    <p className="font-semibold text-neutral-900">{review.name}</p>
+                    <div className="flex text-yellow-400">
+                      {[...Array(review.rating || 5)].map((_, i) => (
+                        <svg key={i} className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                      ))}
+                    </div>
+                  </div>
+                  <blockquote className="text-neutral-700 text-sm leading-relaxed">"{review.quote}"</blockquote>
+                </div>
+              ))}
             </div>
           </motion.div>
         </motion.div>
@@ -129,19 +272,29 @@ const Testimonials = () => {
           whileInView="visible"
           viewport={{ once: true, margin: '-100px' }}
           variants={containerVariants}
-          className="grid grid-cols-2 md:grid-cols-4 gap-6 py-8 border-t border-neutral-100"
+          className="mt-10 rounded-2xl bg-gradient-to-r from-[#073995] via-[#0d4fb8] to-[#11AEF4] p-8 md:p-10 shadow-xl"
         >
-          {[
-            { number: '500+', label: 'Deportistas' },
-            { number: '5.0', label: 'Rating' },
-            { number: '50+', label: 'Instituciones' },
-            { number: '3+', label: 'Anos' },
-          ].map((stat, index) => (
-            <motion.div key={index} variants={itemVariants} className="text-center">
-              <div className="text-2xl md:text-3xl font-bold text-[#073995] mb-1">{stat.number}</div>
-              <div className="text-neutral-600 text-sm">{stat.label}</div>
-            </motion.div>
-          ))}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+            {[
+              { number: 4000, suffix: '+', label: 'Deportistas' },
+              { number: 5.0, decimals: 1, label: 'Estrellas' },
+              { number: 50, suffix: '+', label: 'Instituciones' },
+              { number: 6, suffix: '+', label: 'Años de experiencia' },
+            ].map((stat, index) => (
+              <motion.div
+                key={index}
+                variants={itemVariants}
+                className="text-center text-white"
+                whileHover={{ y: -4 }}
+                transition={{ type: 'spring', stiffness: 220, damping: 18 }}
+              >
+                <div className="text-2xl md:text-3xl font-black mb-1">
+                  <CountUp value={stat.number} suffix={stat.suffix || ''} decimals={stat.decimals || 0} />
+                </div>
+                <div className="text-sm md:text-base text-white/85">{stat.label}</div>
+              </motion.div>
+            ))}
+          </div>
         </motion.div>
       </div>
     </section>

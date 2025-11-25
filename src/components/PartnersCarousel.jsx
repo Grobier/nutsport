@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react'
 import { motion, useReducedMotion, useInView } from 'framer-motion'
+import TextHoverEffect from './TextHoverEffect'
 
 // Datos estáticos fuera del componente para evitar recrearlos en cada render
 const PARTNERS = [
@@ -113,8 +114,12 @@ const PartnersCarousel = () => {
           className="text-center mb-6"
         >
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-2">
-            <span className="text-neutral-900">CONFÍAN EN </span>
-            <span className="text-[#11AEF4]">NOSOTROS</span>
+            <TextHoverEffect
+              text="CONFÍAN EN NOSOTROS"
+              defaultColor="#073995"
+              hoverColor="#11AEF4"
+              className="text-4xl md:text-5xl lg:text-6xl font-bold"
+            />
           </h2>
           <p className="text-lg text-neutral-600 max-w-3xl mx-auto">
             Más de 50 instituciones deportivas confían en nuestro equipo
@@ -143,7 +148,7 @@ const PartnersCarousel = () => {
                   loading="lazy"
                   decoding="async"
                   draggable="false"
-                  className="h-16 md:h-24 w-auto object-contain opacity-100 max-w-[120px] md:max-w-[150px]"
+                  className="h-20 md:h-[7rem] w-auto object-contain opacity-100 max-w-[170px] md:max-w-[220px]"
                 />
               </motion.div>
             ))}
@@ -162,3 +167,4 @@ const PartnersCarousel = () => {
 }
 
 export default PartnersCarousel
+

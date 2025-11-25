@@ -82,11 +82,10 @@ const Footer = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* Brand */}
             <motion.div variants={itemVariants} className="lg:col-span-1">
-              <div className="flex items-center space-x-2 mb-4">
-                <div className="w-10 h-10 bg-[#073995] rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-xl">N</span>
+              <div className="flex items-center space-x-3 mb-4">
+                <div className="h-10">
+                  <img src="/images/logos/Nutsport-logo-h.png" alt="NutSport" className="h-full w-auto" loading="lazy" decoding="async" />
                 </div>
-                <span className="text-2xl font-bold text-white">NutSport</span>
               </div>
               <p className="text-neutral-400 leading-relaxed mb-6">
                 Evaluaciones científicas, planes personalizados y seguimiento 
@@ -162,7 +161,16 @@ const Footer = () => {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
-                  <span>Pérez Valenzuela 1098, oficina 97-98, Providencia</span>
+                                  <span>Perez Valenzuela 1098, oficina 97-98, Providencia</span>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <svg className="w-5 h-5 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l2.5 2.5M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" />
+                  </svg>
+                  <div className="space-y-1">
+                    <p>Lunes a jueves 08:00 a 20:00 horas</p>
+                    <p>Viernes 08:00 a 16:00 horas</p>
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -194,4 +202,5 @@ const Footer = () => {
 }
 
 export default Footer
+
 

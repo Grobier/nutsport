@@ -36,7 +36,7 @@ const Team = () => {
     {
       name: 'Carol Penaloza Arriagada',
       role: 'Nutricionista Deportiva',
-      image: '/images/team/carol.png',
+      image: '/images/team/Carol.png',
       credential:
         'Nutricionista con mencion en Gestion y Calidad de Alimentos (UNAB). Especialista en actividad fisica para embarazo y post parto.',
       details: [
@@ -97,7 +97,7 @@ const Team = () => {
                 <motion.div initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ delay: 0.1, duration: 0.4 }} className="flex items-center justify-center mb-5">
                   <div className="relative w-48 h-48 md:w-56 md:h-56">
                     <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[#3B82F6] to-[#1674D1] ring-2 ring-white/60 shadow-md transition-all duration-300 group-hover:scale-105 group-hover:shadow-xl group-hover:ring-4 group-hover:ring-[#11AEF4]/80" />
-                    <div className="relative w-full h-full rounded-full overflow-hidden ring-1 ring-neutral-200 shadow transition-shadow duration-300 group-hover:shadow-2xl">
+                    <div className="relative w-full h-full rounded-full overflow-hidden ring-1 ring-neutral-200 shadow transition-shadow duration-300 group-hover:shadow-2xl bg-[#073995]">
                       <img
                         src={member.image}
                         alt={`${member.name} - ${member.role}`}
@@ -128,15 +128,23 @@ const Team = () => {
       <AnimatePresence>
         {isModalOpen && selectedMember && (
           <motion.div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setIsModalOpen(false)}>
-            <motion.div className="bg-white rounded-2xl max-w-3xl w-full overflow-hidden shadow-2xl" initial={{ scale: 0.95 }} animate={{ scale: 1 }} exit={{ scale: 0.95 }} onClick={(e) => e.stopPropagation()}>
-              <div className="bg-gradient-to-r from-[#073995] to-[#11AEF4] p-6 text-white">
+            <motion.div className="bg-white rounded-2xl max-w-3xl w-full overflow-hidden shadow-2xl relative max-h-[90vh] overflow-y-auto" initial={{ scale: 0.95 }} animate={{ scale: 1 }} exit={{ scale: 0.95 }} onClick={(e) => e.stopPropagation()}>
+              <button
+                type="button"
+                onClick={() => setIsModalOpen(false)}
+                aria-label="Cerrar"
+                className="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/95 text-[#073995] shadow hover:bg-white transition flex items-center justify-center border border-neutral-200"
+              >
+                ×
+              </button>
+              <div className="bg-gradient-to-r from-[#073995] to-[#11AEF4] p-6 pr-14 text-white">
                 <h3 className="text-2xl font-black font-grift uppercase leading-tight">{selectedMember.name}</h3>
                 <p className="text-white/90">{selectedMember.role}</p>
               </div>
               <div className="p-6 grid gap-6 md:grid-cols-3">
                 <div className="md:col-span-1">
-                  <div className="w-full aspect-square rounded-xl overflow-hidden bg-neutral-100">
-                    <img src={selectedMember.image} alt={selectedMember.name} className="w-full h-full object-cover" />
+                  <div className="w-full max-w-[180px] sm:max-w-[220px] md:max-w-[240px] mx-auto aspect-square rounded-xl overflow-hidden bg-neutral-100">
+                    <img src={selectedMember.image} alt={selectedMember.name} className="w-full h-full object-contain" />
                   </div>
                 </div>
                 <div className="md:col-span-2">

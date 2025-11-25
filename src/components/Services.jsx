@@ -1,5 +1,6 @@
-﻿import React from 'react'
+import React from 'react'
 import { motion } from 'framer-motion'
+import TextHoverEffect from './TextHoverEffect'
 
 const Services = () => {
   // WhatsApp configuration
@@ -17,7 +18,7 @@ const Services = () => {
       ],
       whatsappMessage:
         "Hola%20NutSport%2C%20me%20interesa%20agendar%20una%20evaluaci%C3%B3n%20de%20Nutrici%C3%B3n%20Deportiva%20Personalizada.%20%C2%BFPodr%C3%ADan%20ayudarme%20con%20m%C3%A1s%20informaci%C3%B3n%3F",
-      imageUrl: "/images/services/nutricion-deportiva.jpg"
+      imageUrl: "/images/team/equiponutsport.jpg"
     },
     {
       title: "Psicología del Deporte",
@@ -78,7 +79,12 @@ const Services = () => {
             variants={itemVariants}
             className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-[#073995] mb-4 font-grift uppercase"
           >
-            Nuestros Servicios
+            <TextHoverEffect
+              text="Nuestros Servicios"
+              defaultColor="#073995"
+              hoverColor="#11AEF4"
+              className="text-4xl sm:text-5xl lg:text-6xl font-black font-grift"
+            />
           </motion.h2>
           <motion.p
             variants={itemVariants}
@@ -104,6 +110,7 @@ const Services = () => {
                     src={service.imageUrl}
                     alt={service.title}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    style={{ objectPosition: 'center 15%' }}
                     loading="lazy"
                     decoding="async"
                   />

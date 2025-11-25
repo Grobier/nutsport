@@ -9,6 +9,7 @@ const Pricing = () => {
       id: 1,
       title: 'Consulta Nutricional',
       price: '$40.000',
+      originalPrice: '$50.000',
       duration: '30-45 MIN',
       description: 'Evaluación nutricional completa',
       features: [
@@ -20,7 +21,7 @@ const Pricing = () => {
       headerColor: 'bg-[#073995]',
       buttonText: 'AGENDAR AHORA',
       whatsappMessage:
-        'Hola%20NutSport%2C%20me%20interesa%20agendar%20una%20Consulta%20Nutricional%20Particular%20(%2440.000).%20%C2%BFPodr%C3%ADan%20ayudarme%20con%20la%20disponibilidad%3F',
+        'Hola%20NutSport%2C%20me%20interesa%20agendar%20una%20Consulta%20Nutricional%20Particular%20(en%20oferta%20a%20%2440.000).%20%C2%BFPodr%C3%ADan%20ayudarme%20con%20la%20disponibilidad%3F',
       icon: '🥗',
     },
     {
@@ -56,7 +57,7 @@ const Pricing = () => {
   const agreements = useMemo(() => ([
     {
       id: 101,
-      title: 'Plan Básico',
+      title: 'Plan S',
       price: '$150.000',
       duration: 'PAGO MENSUAL',
       description: 'Capacidad de atención de 1 a 15 personas',
@@ -68,7 +69,7 @@ const Pricing = () => {
     },
     {
       id: 102,
-      title: 'Plan Plus',
+      title: 'Plan M',
       price: '$255.000',
       duration: 'PAGO MENSUAL',
       description: 'Capacidad de atención de 16 a 30 personas',
@@ -81,7 +82,7 @@ const Pricing = () => {
     },
     {
       id: 103,
-      title: 'Plan Premium',
+      title: 'Plan L',
       price: '$325.000',
       duration: 'PAGO MENSUAL',
       description: 'Capacidad de atención de 30 a 50 personas',
@@ -223,8 +224,23 @@ const Pricing = () => {
 
                   {/* Price */}
                   <div className="text-center mb-8 relative z-10">
-                    <motion.div className="text-4xl font-extrabold text-white mb-2" whileHover={{ scale: 1.1 }}>
+                    {plan.originalPrice && (
+                      <div className="flex items-center justify-center gap-2 mb-2">
+                        <span className="text-[11px] font-bold uppercase tracking-wide text-white/90 bg-white/15 px-3 py-1 rounded-full border border-white/30 shadow-sm">
+                          Antes
+                        </span>
+                        <span className="text-lg text-white/85 font-semibold line-through decoration-2 decoration-white/70">
+                          {plan.originalPrice}
+                        </span>
+                      </div>
+                    )}
+                    <motion.div className="text-4xl font-extrabold text-white mb-2 inline-flex items-center gap-2" whileHover={{ scale: 1.1 }}>
                       {plan.price}
+                      {plan.originalPrice && (
+                        <span className="text-xs font-bold text-[#11AEF4] bg-white px-2 py-0.5 rounded-full border border-white/20 shadow-sm">
+                          Oferta
+                        </span>
+                      )}
                     </motion.div>
                     {plan.specialNote && (
                       <motion.p className="text-white font-semibold text-sm" animate={{ opacity: [0.7, 1, 0.7] }} transition={{ duration: 2, repeat: Infinity }}>

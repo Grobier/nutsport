@@ -13,7 +13,7 @@ const Hero = () => {
     'decisiones conscientes',
   ]
 
-  const heroSideVideoId = 'mWHwArh6M1Q'
+  const heroSideVideoId = 'l4YjQrT4jbY'
   const heroSideVideoSrc =
     `https://www.youtube.com/embed/${heroSideVideoId}` +
     '?rel=0&modestbranding=1&playsinline=1&autoplay=1&mute=1&loop=1&controls=0&playlist=' +
