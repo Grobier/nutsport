@@ -5,12 +5,13 @@ import TextHoverEffect from './TextHoverEffect'
 const Team = () => {
   const [selectedMember, setSelectedMember] = useState(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const assetPath = (path) => `${import.meta.env.BASE_URL}${path.replace(/^\//, '')}`
 
   const teamMembers = [
     {
       name: 'Barbara Cruz Poblete',
       role: 'Nutricionista Deportiva',
-      image: '/images/team/barbara.png',
+      image: assetPath('/images/team/barbara.png'),
       credential: 'Nutricionista con mencion en Gestion y Calidad de Alimentos (UNAB). Diplomado en Nutricion Clinica (PUC).',
       details: [
         'Antropometrista ISAK II',
@@ -22,7 +23,7 @@ const Team = () => {
     {
       name: 'Nicolas Matus Bravo',
       role: 'Nutricionista Deportivo',
-      image: '/images/team/nico.png',
+      image: assetPath('/images/team/nico.png'),
       credential:
         'Nutricionista con mencion en Gestion y Calidad de Alimentos (UNAB). Magister en Nutricion Deportiva y Actividad Fisica (Universidad Mayor).',
       details: [
@@ -36,7 +37,7 @@ const Team = () => {
     {
       name: 'Carol Penaloza Arriagada',
       role: 'Nutricionista Deportiva',
-      image: '/images/team/Carol.png',
+      image: assetPath('/images/team/Carol.png'),
       credential:
         'Nutricionista con mencion en Gestion y Calidad de Alimentos (UNAB). Especialista en actividad fisica para embarazo y post parto.',
       details: [

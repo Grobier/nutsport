@@ -34,7 +34,7 @@ const Header = () => {
         transition={{ duration: 0.6 }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled 
-            ? 'bg-[#073995]/95 backdrop-blur-md shadow-lg' 
+            ? 'bg-gradient-to-r from-[#073995]/95 via-[#0d7ed9]/90 to-[#11AEF4]/90 backdrop-blur-md shadow-lg' 
             : 'bg-transparent'
         }`}
       >
@@ -132,7 +132,7 @@ const Header = () => {
             exit={{ opacity: 0, height: 0 }}
             className={`lg:hidden border-t transition-colors duration-300 ${
               isScrolled 
-                ? 'bg-[#073995]/95 backdrop-blur-md border-white/20' 
+                ? 'bg-gradient-to-r from-[#073995]/95 via-[#0d7ed9]/90 to-[#11AEF4]/90 backdrop-blur-md border-white/15' 
                 : 'bg-white border-neutral-200'
             }`}
           >
@@ -174,4 +174,3 @@ const Header = () => {
 }
 
 export default Header
-
