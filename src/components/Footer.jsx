@@ -14,7 +14,6 @@ const Footer = () => {
       { name: 'Nuestro Equipo', href: '#equipo' },
       { name: 'Testimonios', href: '#testimonios' },
       { name: 'FAQ', href: '#faq' },
-      { name: 'Contacto', href: '#contacto' }
     ]
   }
 
@@ -86,9 +85,9 @@ const Footer = () => {
               </ul>
             </motion.div>
 
-            {/* Contacto */}
+            {/* Datos */}
             <motion.div variants={itemVariants} className="lg:col-span-1">
-              <h3 className="text-lg font-bold text-white mb-4">Contacto</h3>
+              <h3 className="text-lg font-bold text-white mb-4">Datos</h3>
               <div className="space-y-3 text-neutral-400">
                 <div className="flex items-center space-x-3">
                   <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
