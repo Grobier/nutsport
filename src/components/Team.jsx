@@ -37,7 +37,7 @@ const Team = () => {
     {
       name: 'Carol Penaloza Arriagada',
       role: 'Nutricionista Deportiva',
-      image: assetPath('/images/team/Carol.png'),
+      image: assetPath('/images/team/carol.png'),
       credential:
         'Nutricionista con mencion en Gestion y Calidad de Alimentos (UNAB). Especialista en actividad fisica para embarazo y post parto.',
       details: [
