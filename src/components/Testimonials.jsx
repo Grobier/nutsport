@@ -2,26 +2,31 @@ import React, { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import TextHoverEffect from './TextHoverEffect'
 
+const GOOGLE_REVIEWS_URL = 'https://www.google.com/search?sca_esv=65d22011d5166a01&rlz=1C1MMCH_esCL1154CL1154&sxsrf=AE3TifNNFMkGnZt7xSAgVmWFeGiLOWnimw:1764689015876&si=AMgyJEtREmoPL4P1I5IDCfuA8gybfVI2d5Uj7QMwYCZHKDZ-E3P59AK65xmDDIyxqfC5oYFMS-B5I66v9K_NXtulZXEn2R2xKsB00070Bkpkn6YpCB89HVGfgv2p6O0X3sTMskL-h7sQ-1uPd7XL9RV1X5sg6sKNuJYrcQbM3tra3HJ-b4nU2fOKKiNh6pAoaUOsJuiUZ4EO&q=Nutsport+-+Nutrición+y+deporte+/+Nutrición+deportiva+Opiniones&sa=X&ved=2ahUKEwins7jvmp-RAxWSopUCHSeIADIQ0bkNegQIHxAE&biw=1440&bih=765&dpr=2#lrd=0x9662c52622c2c645:0xda14468a3c6edcc1,1,,,,'
+
 const Testimonials = () => {
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0)
   const carouselRef = useRef(null)
 
   const googleReviews = [
     {
-      name: 'María González',
-      quote: 'Excelente servicio nutricional, muy personalizado y cercano.',
+      name: 'Matias Valenzuela',
+      quote:
+        'Excelente equipo de profesionales, preocupados y con gran conocimiento. En lo personal, puedo comentar que Barbara es una persona muy agradable y confiable. Ayuda a resolver todas tus dudas.',
       rating: 5,
       source: 'google',
     },
     {
-      name: 'Carlos Mendoza',
-      quote: 'Gran apoyo en la parte mental y nutricional. El equipo es muy profesional.',
+      name: 'Evelyn Salvo',
+      quote:
+        'Excelente servicio, muy profesionales, con un lugar de atención cómodo y agradable. Me he sentido guiada en todo momento y los resultados hasta ahora han sido muy buenos. Totalmente recomendados 🤩🤩',
       rating: 5,
       source: 'google',
     },
     {
-      name: 'Ana Silva',
-      quote: 'Planes claros, seguimiento constante y resultados rápidos.',
+      name: 'Cristobal Sepulveda Urbina',
+      quote:
+        'Excelente servicio nutricional, en lo personal, he recibido una atención y asesoría increíble por parte de Barbara, quien mes a mes me guía en base a mis objetivos y es quien me alinea en mi nutrición. Muy agradecido de su profesionalismo y dedicación :)',
       rating: 5,
       source: 'google',
     },
@@ -110,9 +115,8 @@ const Testimonials = () => {
       return () => cancelAnimationFrame(frame)
     }, [value, duration])
 
-    const formatted = Number.isInteger(value) && decimals === 0
-      ? Math.round(display).toLocaleString('es-CL')
-      : display.toFixed(decimals)
+    const formatted =
+      Number.isInteger(value) && decimals === 0 ? Math.round(display).toLocaleString('es-CL') : display.toFixed(decimals)
 
     return <span>{formatted}{suffix}</span>
   }
@@ -136,7 +140,7 @@ const Testimonials = () => {
                 className="text-3xl md:text-4xl font-bold font-grift"
               />
             </h2>
-            <p className="text-neutral-600 text-sm">Resenas verificadas y testimonios reales</p>
+            <p className="text-neutral-600 text-sm">Reseñas verificadas y testimonios reales</p>
           </motion.div>
 
           <motion.div
@@ -249,7 +253,13 @@ const Testimonials = () => {
 
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
               {googleReviews.map((review, idx) => (
-                <div key={idx} className="bg-white rounded-xl border border-neutral-200 p-5 shadow-sm">
+                <a
+                  key={idx}
+                  href={GOOGLE_REVIEWS_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-white rounded-xl border border-neutral-200 p-5 shadow-sm hover:shadow-md transition-shadow block"
+                >
                   <div className="flex items-center justify-between mb-3">
                     <p className="font-semibold text-neutral-900">{review.name}</p>
                     <div className="flex text-yellow-400">
@@ -261,7 +271,7 @@ const Testimonials = () => {
                     </div>
                   </div>
                   <blockquote className="text-neutral-700 text-sm leading-relaxed">"{review.quote}"</blockquote>
-                </div>
+                </a>
               ))}
             </div>
           </motion.div>

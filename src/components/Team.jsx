@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+﻿import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import TextHoverEffect from './TextHoverEffect'
 
@@ -35,7 +35,7 @@ const Team = () => {
       ]
     },
     {
-      name: 'Carol Penaloza Arriagada',
+      name: 'Carol Peñaloza Arriagada',
       role: 'Nutricionista Deportiva',
       image: assetPath('/images/team/carol.png'),
       credential:

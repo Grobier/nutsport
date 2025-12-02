@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 
+const GOOGLE_REVIEWS_URL = 'https://www.google.com/search?sca_esv=65d22011d5166a01&rlz=1C1MMCH_esCL1154CL1154&sxsrf=AE3TifNNFMkGnZt7xSAgVmWFeGiLOWnimw:1764689015876&si=AMgyJEtREmoPL4P1I5IDCfuA8gybfVI2d5Uj7QMwYCZHKDZ-E3P59AK65xmDDIyxqfC5oYFMS-B5I66v9K_NXtulZXEn2R2xKsB00070Bkpkn6YpCB89HVGfgv2p6O0X3sTMskL-h7sQ-1uPd7XL9RV1X5sg6sKNuJYrcQbM3tra3HJ-b4nU2fOKKiNh6pAoaUOsJuiUZ4EO&q=Nutsport+-+Nutrici%C3%B3n+y+deporte+/+Nutrici%C3%B3n+deportiva+Opiniones&sa=X&ved=2ahUKEwins7jvmp-RAxWSopUCHSeIADIQ0bkNegQIHxAE&biw=1440&bih=765&dpr=2#lrd=0x9662c52622c2c645:0xda14468a3c6edcc1,1,,,,'
+
 const GoogleReviews = () => {
   const [reviews, setReviews] = useState([])
   const [loading, setLoading] = useState(true)
@@ -149,10 +151,13 @@ const GoogleReviews = () => {
           className="grid md:grid-cols-3 gap-6"
         >
           {reviews.map((review, index) => (
-            <motion.div
+            <motion.a
               key={index}
               variants={itemVariants}
-              className="bg-white rounded-lg p-5 shadow-sm hover:shadow-md transition-shadow"
+              href={GOOGLE_REVIEWS_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white rounded-lg p-5 shadow-sm hover:shadow-md transition-shadow block"
             >
               {/* Header compacto */}
               <div className="flex items-center justify-between mb-3">
@@ -178,7 +183,7 @@ const GoogleReviews = () => {
 
               {/* Autor */}
               <p className="font-semibold text-[#073995] text-sm">{review.author_name}</p>
-            </motion.div>
+            </motion.a>
           ))}
         </motion.div>
       </div>
