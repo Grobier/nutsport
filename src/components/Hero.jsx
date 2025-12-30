@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { FlipWords } from './ui/flip-words'
 
@@ -13,24 +13,54 @@ const Hero = () => {
     'decisiones conscientes',
   ]
 
-  const heroSideVideoId = 'l4YjQrT4jbY'
-  const heroSideVideoSrc =
-    `https://www.youtube.com/embed/${heroSideVideoId}` +
+  // Video de fondo
+  const backgroundVideoId = 'XrumYaarR5E'
+  const backgroundVideoSrc =
+    `https://www.youtube.com/embed/${backgroundVideoId}` +
     '?rel=0&modestbranding=1&playsinline=1&autoplay=1&mute=1&loop=1&controls=0&playlist=' +
-    heroSideVideoId
+    backgroundVideoId
+
+  // Thumbnail del video para placeholder
+  const thumbnailUrl = `https://img.youtube.com/vi/${backgroundVideoId}/maxresdefault.jpg`
+
+  const [videoLoaded, setVideoLoaded] = useState(false)
 
   return (
     <section className="relative bg-neutral-950 text-white overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-black via-neutral-950 to-black opacity-80" />
+      {/* Video de fondo */}
+      <div className="absolute inset-0 w-full h-full overflow-hidden">
+        {/* Thumbnail placeholder */}
+        {!videoLoaded && (
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: `url(${thumbnailUrl})` }}
+          />
+        )}
+
+        {/* Video iframe */}
+        <iframe
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.77vh] pointer-events-none"
+          src={backgroundVideoSrc}
+          title="Video de fondo"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          loading="eager"
+          onLoad={() => setVideoLoaded(true)}
+          style={{ opacity: videoLoaded ? 1 : 0, transition: 'opacity 0.5s ease-in' }}
+        />
+      </div>
+
+      {/* Overlay opaco para legibilidad */}
+      <div className="absolute inset-0 bg-black/70" />
 
       <div className="container-custom max-w-7xl mx-auto px-4 py-16 md:py-24 relative z-10">
-        <div className="grid gap-10 lg:gap-16 xl:gap-24 md:grid-cols-2 lg:grid-cols-[1.6fr_0.8fr] xl:grid-cols-[1.6fr_0.7fr] items-center">
+        <div className="flex justify-center items-center">
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.4 }}
             transition={{ duration: 0.7 }}
-            className="space-y-8 text-center md:text-left max-w-xl mx-auto md:mx-0"
+            className="space-y-8 text-center max-w-3xl"
           >
             <p className="text-[11px] md:text-sm uppercase tracking-[0.35em] text-white/60 font-semibold">
               Nutrición & Rendimiento
@@ -75,32 +105,6 @@ const Hero = () => {
                 </div>
               </motion.a>
             </motion.div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.4 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="relative w-full max-w-xs sm:max-w-sm xl:max-w-md mx-auto md:mx-0"
-          >
-            <div className="absolute -inset-4 bg-gradient-to-tr from-[#073995]/40 to-[#11AEF4]/50 blur-3xl opacity-70" />
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl ring-1 ring-white/10">
-              <div className="aspect-[9/16] w-full bg-black relative">
-                <iframe
-                  className="w-full h-full"
-                  src={heroSideVideoSrc}
-                  title="Testimonio destacado"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="strict-origin-when-cross-origin"
-                />
-                <div className="pointer-events-none absolute inset-x-0 top-0 h-12 bg-gradient-to-b from-neutral-950 via-neutral-950/80 to-transparent" />
-                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-neutral-950 via-neutral-950/80 to-transparent" />
-              </div>
-            </div>
           </motion.div>
         </div>
       </div>
