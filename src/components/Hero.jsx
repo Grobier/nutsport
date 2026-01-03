@@ -97,9 +97,9 @@ const Hero = () => {
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.98 }}
-                className="group relative inline-flex items-center gap-3"
+                className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full"
               >
-                <div className="absolute inset-0 bg-white blur-xl opacity-40 group-hover:opacity-60 transition-opacity duration-300 rounded-full" />
+                <div className="absolute inset-0 bg-white blur-lg opacity-40 group-hover:opacity-60 transition-opacity duration-300 rounded-full" />
                 <div className="relative bg-white hover:bg-white/95 text-neutral-900 font-semibold py-3 px-8 sm:py-4 sm:px-10 rounded-full transition-all duration-300 shadow-lg hover:shadow-2xl !border-none outline-none text-sm sm:text-base">
                   Agenda tu evaluación
                 </div>
