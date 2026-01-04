@@ -67,7 +67,7 @@ const Hero = () => {
             </p>
 
             <div className="space-y-4">
-              <div className="text-[26px] sm:text-5xl md:text-[52px] lg:text-[60px] font-black leading-tight font-grift uppercase tracking-tight">
+              <h1 className="text-[26px] sm:text-5xl md:text-[52px] lg:text-[60px] font-black leading-tight font-grift uppercase tracking-tight">
                 <span className="block text-white drop-shadow-lg font-extrabold md:font-black">Tu progreso</span>
                 <span className="block text-white drop-shadow-lg font-extrabold md:font-black">comienza con</span>
                 <span className="block text-[#11AEF4] leading-none font-black">
@@ -77,7 +77,7 @@ const Hero = () => {
                     className="text-[26px] sm:text-5xl md:text-[52px] lg:text-[60px] text-[#11AEF4] font-black leading-tight tracking-tight drop-shadow-lg font-grift uppercase whitespace-nowrap"
                   />
                 </span>
-              </div>
+              </h1>
 
               <p className="text-sm md:text-base text-white/80">
                 Planes de nutrición deportiva personalizados, con acompañamiento experto y seguimiento continuo para que

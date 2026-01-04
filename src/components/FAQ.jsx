@@ -109,9 +109,9 @@ const FAQ = () => {
               variants={itemVariants}
               className="bg-gradient-to-r from-[#073995] to-[#11AEF4] rounded-2xl p-8 text-white"
             >
-              <h3 className="text-2xl font-bold mb-4">
+              <h2 className="text-2xl font-bold mb-4">
                 ¿Tienes preguntas?
-              </h3>
+              </h2>
               <p className="text-lg mb-6 opacity-90">
                 Resolvemos las dudas más comunes sobre nuestros servicios de nutrición deportiva y psicología del deporte.
               </p>

@@ -133,12 +133,7 @@ const Testimonials = () => {
         >
           <motion.div variants={itemVariants} className="text-center md:text-left">
             <h2 className="text-3xl md:text-4xl font-bold text-[#073995] mb-2 uppercase tracking-wide font-grift">
-              <TextHoverEffect
-                text="Lo que dicen nuestros clientes"
-                defaultColor="#073995"
-                hoverColor="#11AEF4"
-                className="text-3xl md:text-4xl font-bold font-grift"
-              />
+              Lo que dicen nuestros clientes
             </h2>
             <p className="text-neutral-600 text-sm">Reseñas verificadas y testimonios reales</p>
           </motion.div>

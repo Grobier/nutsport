@@ -72,9 +72,9 @@ const Team = () => {
             variants={containerVariants}
             className="text-center mb-16"
           >
-            <motion.div variants={itemVariants} className="text-3xl md:text-4xl lg:text-5xl font-black mb-6 font-grift uppercase tracking-wide">
-              <TextHoverEffect text="Nuestro Equipo Experto" hoverColor="#11AEF4" defaultColor="#073995" className="text-3xl md:text-4xl lg:text-5xl font-black" />
-            </motion.div>
+            <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl lg:text-5xl font-black mb-6 font-grift uppercase tracking-wide text-[#073995]">
+              Nuestro Equipo Experto
+            </motion.h2>
             <motion.p variants={itemVariants} className="text-lg text-neutral-600 max-w-3xl mx-auto">
               Profesionales altamente calificados con amplia experiencia en nutricion deportiva
             </motion.p>

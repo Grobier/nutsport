@@ -18,7 +18,8 @@ const Services = () => {
       ],
       whatsappMessage:
         "Hola%20NutSport%2C%20me%20interesa%20agendar%20una%20evaluaci%C3%B3n%20de%20Nutrici%C3%B3n%20Deportiva%20Personalizada.%20%C2%BFPodr%C3%ADan%20ayudarme%20con%20m%C3%A1s%20informaci%C3%B3n%3F",
-      imageUrl: "/images/team/equiponutsport.jpg"
+      imageUrl: "/images/team/equiponutsport.jpg",
+      altText: "Equipo de nutricionistas deportivos de NutSport realizando evaluación nutricional a deportista"
     },
     {
       title: "Psicología del Deporte",
@@ -31,7 +32,8 @@ const Services = () => {
       ],
       whatsappMessage:
         "Hola%20NutSport%2C%20me%20interesa%20agendar%20una%20evaluaci%C3%B3n%20de%20Psicolog%C3%ADa%20del%20Deporte.%20%C2%BFPodr%C3%ADan%20ayudarme%20con%20m%C3%A1s%20informaci%C3%B3n%3F",
-      imageUrl: "/images/services/psicologia-deporte.jpg"
+      imageUrl: "/images/services/psicologia-deporte.jpg",
+      altText: "Psicólogo deportivo de NutSport en sesión de preparación mental con atleta"
     },
     {
       title: "Convenios para Instituciones",
@@ -44,7 +46,8 @@ const Services = () => {
       ],
       whatsappMessage:
         "Hola%20NutSport%2C%20me%20interesa%20informaci%C3%B3n%20sobre%20Convenios%20para%20Instituciones.%20%C2%BFPodr%C3%ADan%20ayudarme%20con%20m%C3%A1s%20detalles%3F",
-      imageUrl: "/images/services/convenios-instituciones.jpg"
+      imageUrl: "/images/services/convenios-instituciones.jpg",
+      altText: "Convenio institucional NutSport con club deportivo para nutrición de equipos"
     }
   ]
 
@@ -79,12 +82,7 @@ const Services = () => {
             variants={itemVariants}
             className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-[#073995] mb-4 font-grift uppercase"
           >
-            <TextHoverEffect
-              text="Nuestros Servicios"
-              defaultColor="#073995"
-              hoverColor="#11AEF4"
-              className="text-4xl sm:text-5xl lg:text-6xl font-black font-grift"
-            />
+            Nuestros Servicios
           </motion.h2>
           <motion.p
             variants={itemVariants}
@@ -108,7 +106,7 @@ const Services = () => {
                 <div className="aspect-video w-full overflow-hidden rounded-2xl mb-6 bg-gray-100">
                   <img
                     src={service.imageUrl}
-                    alt={service.title}
+                    alt={service.altText || service.title}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                     style={{ objectPosition: 'center 15%' }}
                     loading="lazy"

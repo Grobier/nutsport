@@ -49,7 +49,7 @@ const Footer = () => {
             <motion.div variants={itemVariants} className="lg:col-span-1">
               <a href="/" className="inline-flex items-center space-x-3 mb-4">
                 <div className="h-10">
-                  <img src="/images/logos/Nutsport-logo-h.png" alt="NutSport" className="h-full w-auto" loading="lazy" decoding="async" />
+                  <img src="/images/logos/Nutsport-logo-h.png" alt="NutSport - Nutrición Deportiva y Psicología del Deporte Chile" className="h-full w-auto" loading="lazy" decoding="async" />
                 </div>
               </a>
               <p className="text-neutral-400 leading-relaxed mb-6">
