@@ -12,6 +12,13 @@
         "destination": "/index.html"
       }
     ],
+    "redirects": [
+      {
+        "source": "https://nutsport.cl",
+        "destination": "https://www.nutsport.cl",
+        "type": 301
+      }
+    ],
     "headers": [
       {
         "source": "**/*.@(js|css)",
