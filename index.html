@@ -51,11 +51,19 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Preload critical fonts -->
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/grift/GriftGeometric-Variable.woff2" crossorigin>
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- YouTube Preconnect for faster video loading -->
     <link rel="preconnect" href="https://www.youtube.com">
     <link rel="preconnect" href="https://i.ytimg.com">
+    <link rel="dns-prefetch" href="https://img.youtube.com">
+
+    <!-- Preload hero video thumbnail for better LCP -->
+    <link rel="preload" as="image" href="https://img.youtube.com/vi/XrumYaarR5E/maxresdefault.jpg" fetchpriority="high">
 
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">

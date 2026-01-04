@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { FlipWords } from './ui/flip-words'
 
@@ -24,30 +24,65 @@ const Hero = () => {
   const thumbnailUrl = `https://img.youtube.com/vi/${backgroundVideoId}/maxresdefault.jpg`
 
   const [videoLoaded, setVideoLoaded] = useState(false)
+  const [loadVideo, setLoadVideo] = useState(false)
+  const videoContainerRef = useRef(null)
+
+  // Lazy load del video cuando esté en viewport
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Esperar 500ms antes de cargar el video para dar prioridad al contenido
+            setTimeout(() => {
+              setLoadVideo(true)
+            }, 500)
+            observer.disconnect()
+          }
+        })
+      },
+      { threshold: 0.1 }
+    )
+
+    if (videoContainerRef.current) {
+      observer.observe(videoContainerRef.current)
+    }
+
+    return () => observer.disconnect()
+  }, [])
 
   return (
     <section className="relative bg-neutral-950 text-white overflow-hidden">
       {/* Video de fondo */}
-      <div className="absolute inset-0 w-full h-full overflow-hidden">
-        {/* Thumbnail placeholder */}
-        {!videoLoaded && (
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: `url(${thumbnailUrl})` }}
+      <div ref={videoContainerRef} className="absolute inset-0 w-full h-full overflow-hidden">
+        {/* Thumbnail placeholder - optimizado para LCP */}
+        <div
+          className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ${
+            videoLoaded ? 'opacity-0' : 'opacity-100'
+          }`}
+          style={{
+            backgroundImage: `url(${thumbnailUrl})`,
+            willChange: videoLoaded ? 'auto' : 'opacity'
+          }}
+        />
+
+        {/* Video iframe - carga lazy con IntersectionObserver */}
+        {loadVideo && (
+          <iframe
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.77vh] pointer-events-none"
+            src={backgroundVideoSrc}
+            title="Video de fondo NutSport - Nutrición Deportiva"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            loading="lazy"
+            onLoad={() => setVideoLoaded(true)}
+            style={{
+              opacity: videoLoaded ? 1 : 0,
+              transition: 'opacity 1s ease-in',
+              willChange: videoLoaded ? 'auto' : 'opacity'
+            }}
           />
         )}
-
-        {/* Video iframe */}
-        <iframe
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.77vh] pointer-events-none"
-          src={backgroundVideoSrc}
-          title="Video de fondo"
-          frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          loading="eager"
-          onLoad={() => setVideoLoaded(true)}
-          style={{ opacity: videoLoaded ? 1 : 0, transition: 'opacity 0.5s ease-in' }}
-        />
       </div>
 
       {/* Overlay opaco para legibilidad */}
