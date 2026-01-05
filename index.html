@@ -48,22 +48,32 @@
     <!-- Hreflang -->
     <link rel="alternate" hreflang="es-CL" href="https://www.nutsport.cl" />
     
-    <!-- Fonts -->
+    <!-- DNS Prefetch para dominios externos (más rápido) -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="dns-prefetch" href="https://www.youtube.com">
+    <link rel="dns-prefetch" href="https://i.ytimg.com">
+    <link rel="dns-prefetch" href="https://img.youtube.com">
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+
+    <!-- Preconnect para dominios críticos (establece conexión TCP+TLS) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <!-- Preload critical fonts -->
-    <link rel="preload" as="font" type="font/woff2" href="/fonts/grift/GriftGeometric-Variable.woff2" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-    <!-- YouTube Preconnect for faster video loading -->
     <link rel="preconnect" href="https://www.youtube.com">
     <link rel="preconnect" href="https://i.ytimg.com">
-    <link rel="dns-prefetch" href="https://img.youtube.com">
 
-    <!-- Preload hero video thumbnail for better LCP -->
+    <!-- Preload de recursos críticos -->
+    <!-- Fuente crítica para above-the-fold -->
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/grift/GriftGeometric-Variable.woff2" crossorigin fetchpriority="high">
+
+    <!-- Logo del header -->
+    <link rel="preload" as="image" href="/images/logos/Nutsport-logo-h.png" fetchpriority="high">
+
+    <!-- Hero video thumbnail (LCP element) -->
     <link rel="preload" as="image" href="https://img.youtube.com/vi/XrumYaarR5E/maxresdefault.jpg" fetchpriority="high">
+
+    <!-- Google Fonts carga asíncrona con display=swap -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'; this.onload=null;">
 
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
@@ -121,9 +131,8 @@
     </script>
     
     <style>
-      html {
-        scroll-behavior: smooth;
-      }
+      /* Critical CSS - Above the fold (minified) */
+      *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{font-family:'Inter',system-ui,sans-serif;line-height:1.6;color:#0F172A;background-color:#FFFFFF;overflow-x:hidden}h1,h2,h3,h4,h5,h6{font-weight:600;line-height:1.2;font-family:'Grift Geometric','Inter',system-ui,sans-serif}header{position:fixed;top:0;left:0;right:0;z-index:50;transition:all 0.3s}.bg-gradient-to-r{background-image:linear-gradient(to right,var(--tw-gradient-stops))}.from-\\[\\#073995\\]\\/95{--tw-gradient-from:rgba(7,57,149,0.95);--tw-gradient-to:rgba(7,57,149,0);--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)}.via-\\[\\#0d7ed9\\]\\/90{--tw-gradient-to:rgba(13,126,217,0);--tw-gradient-stops:var(--tw-gradient-from),rgba(13,126,217,0.9),var(--tw-gradient-to)}.to-\\[\\#11AEF4\\]\\/90{--tw-gradient-to:rgba(17,174,244,0.9)}.backdrop-blur-md{backdrop-filter:blur(12px)}.text-white{color:#fff}.bg-neutral-950{background-color:rgb(10,10,10)}.overflow-hidden{overflow:hidden}.relative{position:relative}.absolute{position:absolute}.inset-0{top:0;right:0;bottom:0;left:0}.bg-cover{background-size:cover}.bg-center{background-position:center}.bg-black\\/70{background-color:rgba(0,0,0,0.7)}.container-custom{width:100%;max-width:1280px;margin-left:auto;margin-right:auto;padding-left:1rem;padding-right:1rem}@media(min-width:768px){.container-custom{padding-left:2rem;padding-right:2rem}}
     </style>
   </head>
   <body>
