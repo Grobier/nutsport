@@ -6,8 +6,10 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "build:analyze": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "size": "echo 'Bundle sizes:' && du -sh dist/assets/* 2>/dev/null || echo 'Run npm run build first'"
   },
   "dependencies": {
     "framer-motion": "^10.16.4",
@@ -24,9 +26,11 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
     "postcss": "^8.4.27",
+    "rollup-plugin-visualizer": "^6.0.5",
     "tailwindcss": "^3.3.3",
     "terser": "^5.44.1",
     "typescript": "^5.9.3",
-    "vite": "^4.4.5"
+    "vite": "^4.4.5",
+    "vite-plugin-compression": "^0.5.1"
   }
 }

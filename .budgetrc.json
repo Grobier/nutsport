@@ -1,0 +1,39 @@
+{
+  "budgets": [
+    {
+      "name": "Bundle Principal (JS)",
+      "path": "dist/assets/index-*.js",
+      "limit": "100 KB",
+      "gzip": true,
+      "level": "error"
+    },
+    {
+      "name": "CSS Principal",
+      "path": "dist/assets/index-*.css",
+      "limit": "10 KB",
+      "gzip": true,
+      "level": "warning"
+    },
+    {
+      "name": "HTML",
+      "path": "dist/index.html",
+      "limit": "15 KB",
+      "gzip": true,
+      "level": "warning"
+    },
+    {
+      "name": "Chunks individuales",
+      "path": "dist/assets/*.js",
+      "limit": "500 KB",
+      "gzip": false,
+      "level": "warning"
+    }
+  ],
+  "targets": {
+    "lcp": "2.5s",
+    "fcp": "1.8s",
+    "cls": "0.1",
+    "tbt": "300ms",
+    "ttfb": "600ms"
+  }
+}

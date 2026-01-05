@@ -1,10 +1,35 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from 'path'
+import { visualizer } from 'rollup-plugin-visualizer'
+import viteCompression from 'vite-plugin-compression'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+    // Bundle size visualization
+    visualizer({
+      filename: './dist/stats.html',
+      open: false,
+      gzipSize: true,
+      brotliSize: true,
+      template: 'treemap' // sunburst, treemap, network
+    }),
+    // Brotli and Gzip compression
+    viteCompression({
+      algorithm: 'gzip',
+      ext: '.gz',
+      threshold: 1024, // Only compress files larger than 1KB
+      deleteOriginFile: false
+    }),
+    viteCompression({
+      algorithm: 'brotliCompress',
+      ext: '.br',
+      threshold: 1024,
+      deleteOriginFile: false
+    })
+  ],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
@@ -16,6 +41,8 @@ export default defineConfig({
   },
   build: {
     outDir: 'dist',
+    // Performance budgets - warn if bundles exceed limits
+    chunkSizeWarningLimit: 500, // Warn if chunk > 500 KB
     // Optimize bundle size and performance
     minify: 'terser',
     terserOptions: {
@@ -32,8 +59,7 @@ export default defineConfig({
         comments: false // Remove all comments
       }
     },
-    // Optimize chunk sizes
-    chunkSizeWarningLimit: 1000,
+    // Enable CSS code splitting for better caching
     cssCodeSplit: true,
     // Disable source maps in production for smaller bundles
     sourcemap: false,

@@ -1,16 +1,17 @@
 import React, { Suspense, lazy } from 'react'
 import Header from './components/Header'
 import Hero from './components/Hero'
-import Services from './components/Services'
-import PartnersCarousel from './components/PartnersCarousel'
-import WhatsAppButton from './components/WhatsAppButton'
 
 // Lazy load non-critical components for better performance
+// This reduces initial bundle size by deferring Framer Motion hooks and animations
+const PartnersCarousel = lazy(() => import('./components/PartnersCarousel'))
+const Services = lazy(() => import('./components/Services'))
 const Pricing = lazy(() => import('./components/Pricing'))
 const Testimonials = lazy(() => import('./components/Testimonials'))
 const Team = lazy(() => import('./components/Team'))
 const FAQ = lazy(() => import('./components/FAQ'))
 const Footer = lazy(() => import('./components/Footer'))
+const WhatsAppButton = lazy(() => import('./components/WhatsAppButton'))
 
 // Fallback component for suspense
 const ComponentLoader = () => (
@@ -25,8 +26,12 @@ function App() {
       <Header />
       <main>
         <Hero />
-        <PartnersCarousel />
-        <Services />
+        <Suspense fallback={<ComponentLoader />}>
+          <PartnersCarousel />
+        </Suspense>
+        <Suspense fallback={<ComponentLoader />}>
+          <Services />
+        </Suspense>
         <Suspense fallback={<ComponentLoader />}>
           <Pricing />
         </Suspense>
@@ -43,7 +48,9 @@ function App() {
       <Suspense fallback={<ComponentLoader />}>
         <Footer />
       </Suspense>
-      <WhatsAppButton />
+      <Suspense fallback={<ComponentLoader />}>
+        <WhatsAppButton />
+      </Suspense>
     </div>
   )
 }
