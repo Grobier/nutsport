@@ -1,6 +1,7 @@
 ﻿import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import TextHoverEffect from './TextHoverEffect'
+import OptimizedImage from './OptimizedImage'
 
 const Team = () => {
   const [selectedMember, setSelectedMember] = useState(null)
@@ -99,17 +100,16 @@ const Team = () => {
                   <div className="relative w-48 h-48 md:w-56 md:h-56">
                     <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[#3B82F6] to-[#1674D1] ring-2 ring-white/60 shadow-md transition-all duration-300 group-hover:scale-105 group-hover:shadow-xl group-hover:ring-4 group-hover:ring-[#11AEF4]/80" />
                     <div className="relative w-full h-full rounded-full overflow-hidden ring-1 ring-neutral-200 shadow transition-shadow duration-300 group-hover:shadow-2xl bg-[#073995]">
-                      <img
-                        src={member.image}
+                      <OptimizedImage
+                        src={member.image.replace(/\.(png|jpg|jpeg)$/i, '')}
                         alt={`${member.name} - ${member.role}`}
-                        className="w-full h-full object-cover bg-transparent object-center transition-transform duration-300 ease-out group-hover:scale-[1.06] group-hover:-translate-y-1"
+                        width={400}
+                        height={500}
+                        sizes="(max-width: 768px) 200px, 400px"
                         loading="lazy"
-                        decoding="async"
-                        onError={(e) => {
-                          e.currentTarget.style.display = 'none'
-                          const fallback = e.currentTarget.parentElement?.nextElementSibling
-                          if (fallback && fallback.style) fallback.style.display = 'flex'
-                        }}
+                        className="w-full h-full bg-transparent transition-transform duration-300 ease-out group-hover:scale-[1.06] group-hover:-translate-y-1"
+                        objectFit="cover"
+                        objectPosition="center"
                       />
                     </div>
                     <div className="absolute inset-0 hidden items-center justify-center">
@@ -145,7 +145,16 @@ const Team = () => {
               <div className="p-6 grid gap-6 md:grid-cols-3">
                 <div className="md:col-span-1">
                   <div className="w-full max-w-[180px] sm:max-w-[220px] md:max-w-[240px] mx-auto aspect-square rounded-xl overflow-hidden bg-neutral-100">
-                    <img src={selectedMember.image} alt={selectedMember.name} className="w-full h-full object-contain" />
+                    <OptimizedImage
+                      src={selectedMember.image.replace(/\.(png|jpg|jpeg)$/i, '')}
+                      alt={selectedMember.name}
+                      width={400}
+                      height={500}
+                      sizes="(max-width: 640px) 180px, 240px"
+                      loading="eager"
+                      className="w-full h-full"
+                      objectFit="contain"
+                    />
                   </div>
                 </div>
                 <div className="md:col-span-2">

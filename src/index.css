@@ -8,36 +8,10 @@
   --secondary-blue: #11AEF4;
 }
 
-/* Custom font: Grift Geometric Typeface */
-@font-face {
-  font-family: 'Grift Geometric';
-  src: url('/fonts/grift/GriftGeometric-Variable.woff2') format('woff2');
-  font-weight: 100 900;
-  font-style: normal;
-  font-display: swap;
-}
-/* Optional fallbacks if you use static weights; place files in public/fonts/grift/ */
-@font-face {
-  font-family: 'Grift Geometric';
-  src: url('/fonts/grift/GriftGeometric-Regular.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Grift Geometric';
-  src: url('/fonts/grift/GriftGeometric-Bold.woff2') format('woff2');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Grift Geometric';
-  src: url('/fonts/grift/GriftGeometric-Black.woff2') format('woff2');
-  font-weight: 900;
-  font-style: normal;
-  font-display: swap;
-}
+/* Fonts: Inter from Google Fonts
+ * Loaded in index.html with display=swap for optimal performance
+ * Fallbacks to system fonts for instant render
+ */
 
 @layer base {
   * {
@@ -51,7 +25,7 @@
   }
   
   body {
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     line-height: 1.6;
     color: #0F172A;
     background-color: #FFFFFF;
@@ -93,9 +67,9 @@
   }
   
   h1, h2, h3, h4, h5, h6 {
-    font-weight: 600;
+    font-weight: 700;
     line-height: 1.2;
-    font-family: 'Grift Geometric', 'Inter', system-ui, sans-serif;
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   }
 }
 

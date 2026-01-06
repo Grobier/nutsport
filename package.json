@@ -9,7 +9,11 @@
     "build:analyze": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "size": "echo 'Bundle sizes:' && du -sh dist/assets/* 2>/dev/null || echo 'Run npm run build first'"
+    "size": "echo 'Bundle sizes:' && du -sh dist/assets/* 2>/dev/null || echo 'Run npm run build first'",
+    "verify:headers": "bash scripts/verify-cache-headers.sh",
+    "optimize:images": "node scripts/optimize-images.js",
+    "optimize:images:team": "node scripts/optimize-images.js public/images/team",
+    "optimize:images:services": "node scripts/optimize-images.js public/images/services"
   },
   "dependencies": {
     "framer-motion": "^10.16.4",
@@ -27,6 +31,7 @@
     "eslint-plugin-react-refresh": "^0.4.3",
     "postcss": "^8.4.27",
     "rollup-plugin-visualizer": "^6.0.5",
+    "sharp": "^0.34.5",
     "tailwindcss": "^3.3.3",
     "terser": "^5.44.1",
     "typescript": "^5.9.3",

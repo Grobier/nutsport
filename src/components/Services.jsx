@@ -1,6 +1,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import TextHoverEffect from './TextHoverEffect'
+import OptimizedImage from './OptimizedImage'
 
 const Services = () => {
   // WhatsApp configuration
@@ -104,13 +105,16 @@ const Services = () => {
               <div className="h-full flex flex-col bg-white/95 backdrop-blur-sm rounded-3xl p-8 hover:bg-white transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
                 {/* Imagen */}
                 <div className="aspect-video w-full overflow-hidden rounded-2xl mb-6 bg-gray-100">
-                  <img
-                    src={service.imageUrl}
+                  <OptimizedImage
+                    src={service.imageUrl.replace(/\.(jpg|jpeg|png)$/i, '')}
                     alt={service.altText || service.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                    style={{ objectPosition: 'center 15%' }}
+                    width={800}
+                    height={450}
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     loading="lazy"
-                    decoding="async"
+                    className="w-full h-full group-hover:scale-110 transition-transform duration-700"
+                    objectFit="cover"
+                    objectPosition="center 15%"
                   />
                 </div>
 

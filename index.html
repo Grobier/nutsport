@@ -60,17 +60,16 @@
     <link rel="preconnect" href="https://i.ytimg.com">
 
     <!-- Preload de recursos críticos -->
-    <!-- Fuente crítica para above-the-fold -->
-    <link rel="preload" as="font" type="font/woff2" href="/fonts/grift/GriftGeometric-Variable.woff2" crossorigin fetchpriority="high">
-
     <!-- Logo del header -->
     <link rel="preload" as="image" href="/images/logos/Nutsport-logo-h.png" fetchpriority="high">
 
     <!-- Hero video thumbnail (LCP element) -->
     <link rel="preload" as="image" href="https://img.youtube.com/vi/XrumYaarR5E/maxresdefault.jpg" fetchpriority="high">
 
-    <!-- Google Fonts carga asíncrona con display=swap -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'; this.onload=null;">
+    <!-- Google Fonts - Preload critical font for above-the-fold -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'; this.onload=null;">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"></noscript>
 
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
@@ -128,8 +127,51 @@
     </script>
     
     <style>
-      /* Critical CSS - Above the fold (minified) */
-      *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{font-family:'Inter',system-ui,sans-serif;line-height:1.6;color:#0F172A;background-color:#FFFFFF;overflow-x:hidden}h1,h2,h3,h4,h5,h6{font-weight:600;line-height:1.2;font-family:'Grift Geometric','Inter',system-ui,sans-serif}header{position:fixed;top:0;left:0;right:0;z-index:50;transition:all 0.3s}.bg-gradient-to-r{background-image:linear-gradient(to right,var(--tw-gradient-stops))}.from-\\[\\#073995\\]\\/95{--tw-gradient-from:rgba(7,57,149,0.95);--tw-gradient-to:rgba(7,57,149,0);--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)}.via-\\[\\#0d7ed9\\]\\/90{--tw-gradient-to:rgba(13,126,217,0);--tw-gradient-stops:var(--tw-gradient-from),rgba(13,126,217,0.9),var(--tw-gradient-to)}.to-\\[\\#11AEF4\\]\\/90{--tw-gradient-to:rgba(17,174,244,0.9)}.backdrop-blur-md{backdrop-filter:blur(12px)}.text-white{color:#fff}.bg-neutral-950{background-color:rgb(10,10,10)}.overflow-hidden{overflow:hidden}.relative{position:relative}.absolute{position:absolute}.inset-0{top:0;right:0;bottom:0;left:0}.bg-cover{background-size:cover}.bg-center{background-position:center}.bg-black\\/70{background-color:rgba(0,0,0,0.7)}.container-custom{width:100%;max-width:1280px;margin-left:auto;margin-right:auto;padding-left:1rem;padding-right:1rem}@media(min-width:768px){.container-custom{padding-left:2rem;padding-right:2rem}}
+      /* Critical CSS - Above the fold (minified + expanded) */
+      /* Base resets */
+      *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{font-family:'Inter',system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.6;color:#0F172A;background-color:#FFFFFF;overflow-x:hidden}h1,h2,h3,h4,h5,h6{font-weight:700;line-height:1.2;font-family:'Inter',system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}
+
+      /* Font fallback for critical render */
+      /* Inter will be loaded from Google Fonts with display=swap */
+
+      /* Header fixed */
+      header{position:fixed;top:0;left:0;right:0;z-index:50;transition:all 0.3s}
+
+      /* Tailwind utilities - critical only */
+      .bg-gradient-to-r{background-image:linear-gradient(to right,var(--tw-gradient-stops))}
+      .from-\\[\\#073995\\]\\/95{--tw-gradient-from:rgba(7,57,149,0.95);--tw-gradient-to:rgba(7,57,149,0);--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)}
+      .via-\\[\\#0d7ed9\\]\\/90{--tw-gradient-to:rgba(13,126,217,0);--tw-gradient-stops:var(--tw-gradient-from),rgba(13,126,217,0.9),var(--tw-gradient-to)}
+      .to-\\[\\#11AEF4\\]\\/90{--tw-gradient-to:rgba(17,174,244,0.9)}
+      .backdrop-blur-md{backdrop-filter:blur(12px)}
+      .text-white{color:#fff}
+      .bg-neutral-950{background-color:rgb(10,10,10)}
+      .overflow-hidden{overflow:hidden}
+      .relative{position:relative}
+      .absolute{position:absolute}
+      .inset-0{top:0;right:0;bottom:0;left:0}
+      .bg-cover{background-size:cover}
+      .bg-center{background-position:center}
+      .bg-black\\/70{background-color:rgba(0,0,0,0.7)}
+      .flex{display:flex}
+      .items-center{align-items:center}
+      .justify-between{justify-content:space-between}
+      .justify-center{justify-content:center}
+      .space-x-8>:not([hidden])~:not([hidden]){margin-left:2rem}
+      .hidden{display:none}
+      .block{display:block}
+      .inline-block{display:inline-block}
+      .rounded-full{border-radius:9999px}
+      .py-3{padding-top:0.75rem;padding-bottom:0.75rem}
+      .px-6{padding-left:1.5rem;padding-right:1.5rem}
+      .font-semibold{font-weight:600}
+      .shadow-md{box-shadow:0 4px 6px -1px rgba(0,0,0,0.1),0 2px 4px -1px rgba(0,0,0,0.06)}
+      .transition-all{transition-property:all;transition-timing-function:cubic-bezier(0.4,0,0.2,1);transition-duration:150ms}
+
+      /* Container */
+      .container-custom{width:100%;max-width:1280px;margin-left:auto;margin-right:auto;padding-left:1rem;padding-right:1rem}
+      @media(min-width:768px){.container-custom{padding-left:2rem;padding-right:2rem}}
+      @media(min-width:1024px){.hidden.lg\\:flex{display:flex}.hidden.lg\\:block{display:block}}
+
       /* Hero placeholder styles */
       #hero-placeholder{position:relative;background:#0a0a0a;color:#fff;overflow:hidden;min-height:100vh;display:flex;align-items:center;justify-content:center}
       #hero-placeholder .hero-bg{position:absolute;inset:0;background:url('https://img.youtube.com/vi/XrumYaarR5E/maxresdefault.jpg') center/cover;opacity:0.9;width:100%;height:100%;aspect-ratio:16/9}
