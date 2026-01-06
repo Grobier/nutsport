@@ -1,7 +1,6 @@
 ﻿import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import TextHoverEffect from './TextHoverEffect'
-import OptimizedImage from './OptimizedImage'
 
 const Team = () => {
   const [selectedMember, setSelectedMember] = useState(null)
@@ -100,17 +99,35 @@ const Team = () => {
                   <div className="relative w-48 h-48 md:w-56 md:h-56">
                     <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[#3B82F6] to-[#1674D1] ring-2 ring-white/60 shadow-md transition-all duration-300 group-hover:scale-105 group-hover:shadow-xl group-hover:ring-4 group-hover:ring-[#11AEF4]/80" />
                     <div className="relative w-full h-full rounded-full overflow-hidden ring-1 ring-neutral-200 shadow transition-shadow duration-300 group-hover:shadow-2xl bg-[#073995]">
-                      <OptimizedImage
-                        src={member.image.replace(/\.(png|jpg|jpeg)$/i, '')}
-                        alt={`${member.name} - ${member.role}`}
-                        width={400}
-                        height={500}
-                        sizes="(max-width: 768px) 200px, 400px"
-                        loading="lazy"
-                        className="w-full h-full bg-transparent transition-transform duration-300 ease-out group-hover:scale-[1.06] group-hover:-translate-y-1"
-                        objectFit="cover"
-                        objectPosition="center"
-                      />
+                      <picture>
+                        <source
+                          srcSet={`${member.image.replace(/\.(png|jpg|jpeg)$/i, '')}-400w.avif 400w, ${member.image.replace(/\.(png|jpg|jpeg)$/i, '')}-800w.avif 800w`}
+                          sizes="(max-width: 768px) 200px, 400px"
+                          type="image/avif"
+                        />
+                        <source
+                          srcSet={`${member.image.replace(/\.(png|jpg|jpeg)$/i, '')}-400w.webp 400w, ${member.image.replace(/\.(png|jpg|jpeg)$/i, '')}-800w.webp 800w`}
+                          sizes="(max-width: 768px) 200px, 400px"
+                          type="image/webp"
+                        />
+                        <img
+                          src={`${member.image.replace(/\.(png|jpg|jpeg)$/i, '')}-800w.jpg`}
+                          srcSet={`${member.image.replace(/\.(png|jpg|jpeg)$/i, '')}-400w.jpg 400w, ${member.image.replace(/\.(png|jpg|jpeg)$/i, '')}-800w.jpg 800w`}
+                          sizes="(max-width: 768px) 200px, 400px"
+                          alt={`${member.name} - ${member.role}`}
+                          className="w-full h-full object-cover bg-transparent transition-transform duration-300 ease-out group-hover:scale-[1.06] group-hover:-translate-y-1"
+                          style={{ objectPosition: 'center' }}
+                          width="400"
+                          height="500"
+                          loading="lazy"
+                          decoding="async"
+                          onError={(e) => {
+                            e.currentTarget.style.display = 'none'
+                            const fallback = e.currentTarget.parentElement?.nextElementSibling
+                            if (fallback && fallback.style) fallback.style.display = 'flex'
+                          }}
+                        />
+                      </picture>
                     </div>
                     <div className="absolute inset-0 hidden items-center justify-center">
                       <span className="text-white font-bold text-xl">
@@ -145,16 +162,29 @@ const Team = () => {
               <div className="p-6 grid gap-6 md:grid-cols-3">
                 <div className="md:col-span-1">
                   <div className="w-full max-w-[180px] sm:max-w-[220px] md:max-w-[240px] mx-auto aspect-square rounded-xl overflow-hidden bg-neutral-100">
-                    <OptimizedImage
-                      src={selectedMember.image.replace(/\.(png|jpg|jpeg)$/i, '')}
-                      alt={selectedMember.name}
-                      width={400}
-                      height={500}
-                      sizes="(max-width: 640px) 180px, 240px"
-                      loading="eager"
-                      className="w-full h-full"
-                      objectFit="contain"
-                    />
+                    <picture>
+                      <source
+                        srcSet={`${selectedMember.image.replace(/\.(png|jpg|jpeg)$/i, '')}-400w.avif 400w, ${selectedMember.image.replace(/\.(png|jpg|jpeg)$/i, '')}-800w.avif 800w`}
+                        sizes="(max-width: 640px) 180px, 240px"
+                        type="image/avif"
+                      />
+                      <source
+                        srcSet={`${selectedMember.image.replace(/\.(png|jpg|jpeg)$/i, '')}-400w.webp 400w, ${selectedMember.image.replace(/\.(png|jpg|jpeg)$/i, '')}-800w.webp 800w`}
+                        sizes="(max-width: 640px) 180px, 240px"
+                        type="image/webp"
+                      />
+                      <img
+                        src={`${selectedMember.image.replace(/\.(png|jpg|jpeg)$/i, '')}-400w.jpg`}
+                        srcSet={`${selectedMember.image.replace(/\.(png|jpg|jpeg)$/i, '')}-400w.jpg 400w, ${selectedMember.image.replace(/\.(png|jpg|jpeg)$/i, '')}-800w.jpg 800w`}
+                        sizes="(max-width: 640px) 180px, 240px"
+                        alt={selectedMember.name}
+                        className="w-full h-full object-contain"
+                        width="400"
+                        height="500"
+                        loading="eager"
+                        decoding="async"
+                      />
+                    </picture>
                   </div>
                 </div>
                 <div className="md:col-span-2">
