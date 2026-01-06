@@ -13,15 +13,11 @@ const Hero = () => {
     'decisiones conscientes',
   ]
 
-  // Video de fondo
-  const backgroundVideoId = 'XrumYaarR5E'
-  const backgroundVideoSrc =
-    `https://www.youtube.com/embed/${backgroundVideoId}` +
-    '?rel=0&modestbranding=1&playsinline=1&autoplay=1&mute=1&loop=1&controls=0&playlist=' +
-    backgroundVideoId
+  // Video de fondo local
+  const backgroundVideoSrc = '/videos/hero-background.mp4'
 
-  // Thumbnail del video para placeholder
-  const thumbnailUrl = `https://img.youtube.com/vi/${backgroundVideoId}/maxresdefault.jpg`
+  // Thumbnail del video para placeholder (primera carga)
+  const thumbnailUrl = `https://img.youtube.com/vi/XrumYaarR5E/maxresdefault.jpg`
 
   const [videoLoaded, setVideoLoaded] = useState(false)
   const [loadVideo, setLoadVideo] = useState(false)
@@ -66,16 +62,16 @@ const Hero = () => {
           }}
         />
 
-        {/* Video iframe - carga lazy con IntersectionObserver */}
+        {/* Video HTML5 - carga lazy con IntersectionObserver */}
         {loadVideo && (
-          <iframe
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.77vh] pointer-events-none"
+          <video
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full object-cover pointer-events-none"
             src={backgroundVideoSrc}
-            title="Video de fondo NutSport - Nutrición Deportiva"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            loading="lazy"
-            onLoad={() => setVideoLoaded(true)}
+            autoPlay
+            muted
+            loop
+            playsInline
+            onLoadedData={() => setVideoLoaded(true)}
             style={{
               opacity: videoLoaded ? 1 : 0,
               transition: 'opacity 1s ease-in',
